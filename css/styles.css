@@ -189,17 +189,18 @@ a.custom-card:hover {
   color: orange;
 }
 
-.container {
+.logIn {
   text-align: center;
   margin-top: 150px;
   position: relative;
 }
 
-.container h3 {
+.logIn h3 {
   text-align: center;
   padding-top: 30px;
   font-weight: 600;
 }
+
 
 .texto {
   position: relative;
@@ -238,7 +239,7 @@ a.custom-card:hover {
   visibility: hidden;
 }
 
-img {
+.logo {
   height: 140px;
 }
 
