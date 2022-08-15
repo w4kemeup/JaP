@@ -42,6 +42,6 @@ document.getElementById("lgnBtn").addEventListener("click", function () {
     } else if (usuario.value === "" && password.value.length >= 1) {
         (usuarioMal() + passwordBien());
     } else if (usuario.value.length >= 1 && password.value.length >= 1) {
-        (usuarioBien() + passwordBien() + location.replace("https://w4kemeup.github.io/JaP/"));
+        (usuarioBien() + passwordBien() + location.replace("https://w4kemeup.github.io/JaP/portada.html"));
     }
 })
