@@ -188,3 +188,76 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+.container {
+  text-align: center;
+  margin-top: 150px;
+  position: relative;
+}
+
+.container h3 {
+  text-align: center;
+  padding-top: 30px;
+  font-weight: 600;
+}
+
+.texto {
+  position: relative;
+  padding-top: 10px;
+}
+
+.texto input {
+  width: 300px;
+}
+
+#usuario,
+#password {
+  padding-left: 10px;
+  border: 0.5px solid black;
+  }
+
+#alertaUsuario, #alertaPassword {
+  color: red;
+  position: absolute;
+  padding-left: 270px;
+  margin-top: 3px;
+  visibility: hidden;
+}
+
+#correctoUser, #correctoPassword {
+  color: green;
+  position: absolute;
+  padding-left: 270px;
+  margin-top: 3px;
+  visibility: hidden;
+}
+
+#mailError, #passError {
+  padding-top: 10px;
+  color: red;
+  visibility: hidden;
+}
+
+img {
+  height: 140px;
+}
+
+#lgnBtn {
+  font-weight: 600;
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 5px;
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+}
+
+#lgnBtn:hover {
+  background-color: rgb(11, 94, 215);
+}
+
+#lgnBtn:focus {
+  border: 2px solid #0087F7;
+}
