@@ -175,6 +175,11 @@ footer p {
   display: none;
 }
 
+h3,
+label {
+  color: black;
+}
+
 main {
   min-height: calc(100vh - 210px);
 }
@@ -215,9 +220,10 @@ a.custom-card:hover {
 #password {
   padding-left: 10px;
   border: 0.5px solid black;
-  }
+}
 
-#alertaUsuario, #alertaPassword {
+#alertaUsuario,
+#alertaPassword {
   color: red;
   position: absolute;
   padding-left: 270px;
@@ -225,7 +231,8 @@ a.custom-card:hover {
   visibility: hidden;
 }
 
-#correctoUser, #correctoPassword {
+#correctoUser,
+#correctoPassword {
   color: green;
   position: absolute;
   padding-left: 270px;
@@ -233,7 +240,8 @@ a.custom-card:hover {
   visibility: hidden;
 }
 
-#mailError, #passError {
+#mailError,
+#passError {
   padding-top: 10px;
   color: red;
   visibility: hidden;
@@ -261,4 +269,50 @@ a.custom-card:hover {
 
 #lgnBtn:focus {
   border: 2px solid #0087F7;
+}
+
+#botonOscuro {
+  position: absolute;
+  top: 20px;
+  right: 16px;
+}
+
+#botonOscuro {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+#botonOscuro:hover {
+  background-color: #212529;
+  color: white;
+  cursor: pointer;
+}
+
+#botonClaro {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+#botonClaro:hover {
+  background-color: #212529;
+  color: white;
+  cursor: pointer;
+}
+
+
+.oscuro {
+  background-color: #1d2a35;
+}
+
+.oscuro h3,
+.oscuro label {
+  color: white;
+}
+
+.oscuro input {
+  border: 1px solid white;
 }

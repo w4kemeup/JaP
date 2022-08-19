@@ -12,34 +12,40 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
   <style>
     body {
-      background-color: rgb(248, 249, 250);
+      background-color: white;
     }
   </style>
 </head>
 
-<body>
+<body class="modo-default">
   <main class="mt-5">
-    <div class="logIn">
-      <img class="logo" src="img/login.png">
-      <h3>Inicio de sesión</h3>
-      <div class="texto">
-        <label>Email <br>
-          <i class="bi bi-exclamation-circle" id="alertaUsuario"></i>  
-          <i class="bi bi-check-circle" id="correctoUser"></i>          
-        <input id="usuario" type="email" placeholder="Email" required><br>
-        <label id="mailError">Ingrese su e-mail</label>
+    <div>
+      <div class="logIn">
+        <div id="icono">
+          <i class="bi bi-moon-fill" id="botonOscuro"></i>
+        </div>
+        <div id="iconoC">
+        </div>
+        <img class="logo" src="img/login.png">
+        <div class="texto">
+          <h3>Inicio de sesión</h3>
+          <label>Email</label> <br>
+          <i class="bi bi-exclamation-circle" id="alertaUsuario"></i>
+          <i class="bi bi-check-circle" id="correctoUser"></i>
+          <input id="usuario" type="email" placeholder="Email" required><br>
+          <label id="mailError">Ingrese su e-mail</label>
+        </div>
+        <div class="texto">
+          <label>Contraseña</label><br>
+          <i class="bi bi-exclamation-circle" id="alertaPassword"></i>
+          <i class="bi bi-check-circle" id="correctoPassword"></i>
+          <input id="password" type="password" placeholder="Contraseña" required><br>
+          <label id="passError">Ingrese su contraseña</label>
+        </div>
+        <div class="ingresar">
+          <br><input type="button" value="Ingresar" id="lgnBtn">
+        </div>
       </div>
-      <div class="texto">
-        <label>Contraseña</label><br>
-        <i class="bi bi-exclamation-circle" id="alertaPassword"></i>
-        <i class="bi bi-check-circle" id="correctoPassword"></i>
-        <input id="password" type="password" placeholder="Contraseña" required><br>
-        <label id="passError">Ingrese su contraseña</label>
-      </div>       
-      <div class="ingresar">
-        <br><input type="button" value="Ingresar" id="lgnBtn">
-      </div>
-      
     </div>
   </main>
   <footer class="text-muted">
