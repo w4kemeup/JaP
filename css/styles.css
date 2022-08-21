@@ -316,3 +316,8 @@ a.custom-card:hover {
 .oscuro input {
   border: 1px solid white;
 }
+
+#buttonDiv {
+  padding-top: 10px;
+  padding-left: 800px;
+}
