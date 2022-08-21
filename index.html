@@ -15,9 +15,29 @@
       background-color: white;
     }
   </style>
+      <script src="https://accounts.google.com/gsi/client" async defer></script>
+      <script>
+          function handleCredentialResponse(response) {
+              console.log("Encoded JWT ID token: " + response.credential);
+          }
+          window.onload = function () {
+              google.accounts.id.initialize({
+                  client_id: "721921174938-p0e3kmvhgasha3v828mtf3tgatiro3vh.apps.googleusercontent.com",
+                  callback: handleCredentialResponse
+              });
+              google.accounts.id.renderButton(
+                  document.getElementById("buttonDiv"),
+                  {
+                      theme: "filled_black", size: "large", type: "standard", shape: "pill", text: "$ {button.text}", logo_alignment: "left", width: "300"
+                  }
+              );
+              google.accounts.id.prompt();
+          }
+      </script>
 </head>
 
 <body class="modo-default">
+  <div id="buttonDiv"></div>
   <main class="mt-5">
     <div>
       <div class="logIn">
