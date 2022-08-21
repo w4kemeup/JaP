@@ -53,7 +53,7 @@ document.getElementById("lgnBtn").addEventListener("click", function () {
 let boton = document.getElementById("botonOscuro"); // obtengo el boton con la id botonOscuro //
 let fondo = document.body; // establezco la variable fondo para agregarle el modo oscuro cada vez que presiono el boton // 
 
-boton.addEventListener("click", function (){ 
+boton.addEventListener("click", function () {
     let tema = fondo.classList.toggle("oscuro")  // al body le agrego la clase "oscuro" //
     localStorage.setItem("modo-oscuro", tema)   // y lo almaceno en una variable //
 })
@@ -62,8 +62,27 @@ boton.addEventListener("click", function (){
 
 let dark = localStorage.getItem("modo-oscuro");  // para obtener el valor del dato almacenado //
 
-if (dark=="true") {
-    fondo.classList.add("oscuro") 
-}else{
+if (dark == "true") {
+    fondo.classList.add("oscuro")
+} else {
     fondo.classList.remove("oscuro")
 }
+
+
+function handleCredentialResponse(response) {
+    location.replace("portada.html")
+}
+window.onload = function () {
+    google.accounts.id.initialize({
+        client_id: "721921174938-p0e3kmvhgasha3v828mtf3tgatiro3vh.apps.googleusercontent.com",
+        callback: handleCredentialResponse
+    });
+    google.accounts.id.renderButton(
+        document.getElementById("buttonDiv"),
+        {
+            theme: "filled_black", size: "large", type: "standard", shape: "pill", text: "$ {button.text}", logo_alignment: "left", width: "300"
+        }
+    );
+    google.accounts.id.prompt();
+}
+
