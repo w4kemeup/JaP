@@ -1,24 +1,22 @@
-const AUTOS = "https://japceibal.github.io/emercado-api/cats_products/101.json";
-let listadoAutos = [];
+let listadoProductos = [];
 
-
-function mostrarListadoAutos() {
+function mostrarProductos() {
 
     let htmlContentToAppend = "";
-    for (let i = 0; i < listadoAutos.products.length; i++) {
-        let auto = listadoAutos.products[i];
+    for (let i = 0; i < listadoProductos.products.length; i++) {
+        let producto = listadoProductos.products[i];
         htmlContentToAppend += `
-        <div onclick="setCatID(${auto.id})" class="list-group-item list-group-item-action cursor-active">
+        <div onclick="setCatID(${producto.id})" class="list-group-item list-group-item-action cursor-active">
             <div class="row">
                 <div class="col-3">
-                    <img src="${auto.image}" alt="${auto.description}" class="img-thumbnail">
+                    <img src="${producto.image}" alt="${producto.description}" class="img-thumbnail">
                 </div>
                 <div class="col">
                     <div class="d-flex w-100 justify-content-between">
-                        <h4 class="mb-1">${auto.name} - ${auto.currency} ${auto.cost}</h4>
-                        <small class="text-muted">${auto.soldCount} vendidos</small>
+                        <h4 class="mb-1">${producto.name} - ${producto.currency} ${producto.cost}</h4>
+                        <small class="text-muted">${producto.soldCount} vendidos</small>
                     </div>
-                    <p class="mb-1">${auto.description}</p>
+                    <p class="mb-1">${producto.description}</p>
                 </div>
             </div>
         </div>
@@ -26,15 +24,17 @@ function mostrarListadoAutos() {
     }
 
     document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
+    document.getElementById("nombreProducto").innerHTML = listadoProductos.catName;
 }
 
+let getID = localStorage.getItem("catID");
 
 
 document.addEventListener("DOMContentLoaded", function (e) {
-    getJSONData(AUTOS).then(function (resultObj) {
+    getJSONData(PRODUCTS_URL + getID + EXT_TYPE).then(function (resultObj) {
         if (resultObj.status === "ok") {
-            listadoAutos = resultObj.data
-            mostrarListadoAutos()
+            listadoProductos = resultObj.data
+            mostrarProductos()
             console.log(resultObj.data)
         }
     })

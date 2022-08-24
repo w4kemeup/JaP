@@ -43,7 +43,7 @@ document.getElementById("lgnBtn").addEventListener("click", function () {
     } else if (usuario.value === "" && password.value.length >= 1) {
         (usuarioMal() + passwordBien());
     } else if (usuario.value.length >= 1 && password.value.length >= 1) {
-        (usuarioBien() + passwordBien() + location.replace("portada.html"));
+        (usuarioBien() + passwordBien() + location.replace("portada.html") + localStorage.setItem("correo", usuario.value));
     }
 })
 
@@ -68,6 +68,7 @@ if (dark == "true") {
     fondo.classList.remove("oscuro")
 }
 
+// sign in con google //
 
 function handleCredentialResponse(response) {
     location.replace("portada.html")
