@@ -36,13 +36,13 @@ function passwordMal() {
 
 document.getElementById("lgnBtn").addEventListener("click", function () {
 
-    if (usuario.value === "" && password.value === "") {
+    if (usuario.value == "" && password.value == "") {
         (usuarioMal() + passwordMal());
-    } else if (usuario.value.length >= 1 && password.value === "") {
+    } else if (usuario.value !== "" && password.value == "") {
         (usuarioBien() + passwordMal());
-    } else if (usuario.value === "" && password.value.length >= 1) {
+    } else if (usuario.value == "" && password.value !== "") {
         (usuarioMal() + passwordBien());
-    } else if (usuario.value.length >= 1 && password.value.length >= 1) {
+    } else if (usuario.value !== "" && password.value !== "") {
         (usuarioBien() + passwordBien() + location.replace("portada.html") + localStorage.setItem("correo", usuario.value));
     }
 })

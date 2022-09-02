@@ -212,6 +212,7 @@ a.custom-card:hover {
   padding-top: 10px;
 }
 
+
 .texto input {
   width: 300px;
 }
@@ -220,6 +221,11 @@ a.custom-card:hover {
 #password {
   padding-left: 10px;
   border: 0.5px solid black;
+}
+
+#usuario:focus,
+#password:focus {
+  outline: none;
 }
 
 #alertaUsuario,
@@ -320,4 +326,39 @@ a.custom-card:hover {
 #buttonDiv {
   padding-top: 10px;
   padding-left: 800px;
+}
+
+#buscador {
+  position: absolute;
+  margin-top: 5px;
+  right: 10px;
+  width: 40px;
+  border-radius: 50px;
+  color: #212529;
+  background-color: #212529;
+  transition: 0.5s;
+  border: 2px solid white;
+}
+
+#buscador:hover {
+  position: absolute;
+  margin-top: 5px;
+  right: 10px;
+  width: 380px;
+  transition: 0.5s;
+  color: white;
+  border-start-end-radius: 50px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+#buscador:focus {
+  outline: none;
+}
+
+#lupa {
+  position: absolute;
+  right: 20px;
+  margin-top: 8px;
+  color: white;
 }
