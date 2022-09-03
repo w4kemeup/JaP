@@ -1,3 +1,5 @@
+/* variables y constantes necesarias para el ejercicio */
+
 const ORDER_ASC_BY_PRICE = "priceUp";
 const ORDER_DESC_BY_PRICE = "priceDown";
 const ORDER_BY_PROD_RELEVANCE = "Rel.";
@@ -9,6 +11,8 @@ let minCount = undefined;
 let maxCount = undefined;
 let search = undefined;
 let getID = localStorage.getItem("catID");
+
+/* criterios para ordenar los productos  */
 
 function sortProductos(criteria, array) {
 
@@ -38,6 +42,8 @@ function sortProductos(criteria, array) {
 
     return result;
 }
+
+/* funcion para mostrar los productos */
 
 function mostrarProductos() {
 
@@ -72,6 +78,8 @@ function mostrarProductos() {
     }
 }
 
+/* funcion para mostrar y ordenar los productos */
+
 function sortAndShowProductos(sortCriteria, productosFiltrados) {
     currentSortCriteria = sortCriteria;
 
@@ -83,6 +91,9 @@ function sortAndShowProductos(sortCriteria, productosFiltrados) {
 
     mostrarProductos();
 }
+
+/* al cargar la data, se ejecuta la funcion getJSONData, se concatena la url de los productos con su extension correspondiente e ID correspondiente, seguido se cargan los criterios para ordenar los productos
+basados en precio mayor o menor y productos vendidos */
 
 document.addEventListener("DOMContentLoaded", function (e) {
     getJSONData(PRODUCTS_URL + getID + EXT_TYPE).then(function (resultObj) {
@@ -106,6 +117,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
         sortAndShowProductos(ORDER_BY_PROD_RELEVANCE);
     });
 
+    /* limpiar campo de filtros */
+
     document.getElementById("clearRangeFilter").addEventListener("click", function () {
         document.getElementById("rangeFilterCountMin").value = "";
         document.getElementById("rangeFilterCountMax").value = "";
@@ -114,9 +127,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
         minCount = undefined;
         maxCount = undefined;
         search = undefined;
-        
+
         mostrarProductos();
     });
+
+    /* filtrado basado en valores ingresados manualmente */
 
     document.getElementById("rangeFilterCount").addEventListener("click", function () {
 
@@ -139,6 +154,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
         mostrarProductos();
     });
+
+    /* barra de busqueda */
 
     document.getElementById("buscador").addEventListener("input", function () {
         search = document.getElementById("buscador").value;

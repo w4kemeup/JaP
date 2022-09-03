@@ -40,4 +40,6 @@ let getJSONData = function(url){
     });
 }
 
+/* obtengo la key almacenada con el valor del usuario, y lo muestro en un parrafo vacio con la id correspondiente para verlo en todas las paginas */
+
 document.getElementById("userNav").innerHTML = localStorage.getItem("correo");

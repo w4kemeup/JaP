@@ -43,7 +43,7 @@ document.getElementById("lgnBtn").addEventListener("click", function () {
     } else if (usuario.value == "" && password.value !== "") {
         (usuarioMal() + passwordBien());
     } else if (usuario.value !== "" && password.value !== "") {
-        (usuarioBien() + passwordBien() + location.replace("portada.html") + localStorage.setItem("correo", usuario.value));
+        (usuarioBien() + passwordBien() + location.replace("portada.html") + localStorage.setItem("correo", usuario.value)); /* al realizar un login exitoso, se guarda en una key el valor del correo  */
     }
 })
 
