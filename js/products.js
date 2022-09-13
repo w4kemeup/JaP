@@ -12,7 +12,15 @@ let maxCount = undefined;
 let search = undefined;
 let getID = localStorage.getItem("catID");
 
+
+function setCatID(id) {
+    localStorage.setItem("productoID", id);
+    window.location = "product-info.html"
+    console.log(id)
+}
+
 /* criterios para ordenar los productos  */
+
 
 function sortProductos(criteria, array) {
 

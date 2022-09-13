@@ -324,8 +324,9 @@ a.custom-card:hover {
 }
 
 #buttonDiv {
-  padding-top: 10px;
-  padding-left: 800px;
+  display: grid;
+  place-items: center;
+  margin-top: 10px;
 }
 
 #buscador {
@@ -361,4 +362,82 @@ a.custom-card:hover {
   right: 20px;
   margin-top: 8px;
   color: white;
+}
+
+.tablaProducto {
+  display: grid;
+  place-items: center;
+  margin-top: 50px;
+}
+
+.contenedorComentarios {
+  display: grid;
+  place-items: left;
+  margin-left: 245px;
+  margin-top: 50px;
+}
+
+.checked {
+  color: orange;
+}
+
+#puntaje {
+  width: 150px;
+  padding: 5px;
+}
+
+#puntajeBtn {
+  font-family: Raleway;
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 5px;
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+}
+
+#puntajeBtn:hover {
+  background-color: rgb(11, 94, 215);
+}
+
+.bi-star-fill {
+  color: orange;
+}
+
+#contenidoComentarios td {
+  border: 1px solid rgba(0, 0, 0, .125);
+  width: 1300px;
+  padding: 0.5rem 1rem;
+}
+
+#contenedorComentarios,
+h4 {
+  font-family: Raleway;
+}
+
+#contenedorComentariosNuevos {
+  margin-top: 20px;
+  font-family: Raleway;
+}
+
+#contenedorComentariosNuevos textarea {
+  border: 1px solid rgba(0, 0, 0, .125);
+}
+
+#contenedorComentariosNuevos textarea:focus {
+  outline: none;
+}
+
+#puntaje {
+  border: 1px solid rgba(0, 0, 0, .125);
+}
+
+#comentarios {
+  margin-top: 10px;
+}
+
+table {
+  font-family: Raleway;
 }
