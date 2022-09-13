@@ -70,14 +70,6 @@ function mostrarProductos() {
     infoProducto.innerHTML += row;
 }
 
-
-function mostrarFotos() {
-    for (let i = 0; i < productoFotos.length; i++) {
-        let foto = productoFotos[i];
-        return `<img src="${foto.images}" style=width:350px>`;
-    }
-}
-
 function estrella(num) {
     let estrellaLlena = `<span class="bi bi-star-fill"></span>`;
     let estrellaVacia = `<span class="bi bi-star"></span>`
