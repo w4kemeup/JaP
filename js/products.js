@@ -81,9 +81,9 @@ function mostrarProductos() {
              `;
             }
         }
-        document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
-        document.getElementById("nombreProducto").innerHTML = listadoProductosNombres.catName;
     }
+    document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
+    document.getElementById("nombreProducto").innerHTML = listadoProductosNombres.catName;
 }
 
 /* funcion para mostrar y ordenar los productos */

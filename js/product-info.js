@@ -5,16 +5,10 @@ let comentarios = [];
 let infoProducto = document.getElementById("contenidoProducto");
 let cuadroComentarios = document.getElementById("contenidoComentarios");
 let botonEnviar = document.getElementById("puntajeBtn");
-let comentarioUsuario = document.getElementById("comentarioNuevo");
 let usuario = localStorage.getItem("correo");
-let agregarComentario = [];
 const fecha = new Date();
-let calificacion = document.getElementById("puntaje");
-let i = 0;
 
-function formatoFechaHora(num) {
-    return num < 10 ? `0${num}` : num;
-}
+/* Formato de fecha  */
 
 function fechaActual() {
     let mes = formatoFechaHora(fecha.getMonth() + 1);
@@ -23,6 +17,8 @@ function fechaActual() {
     return [anio, mes, dia].join('-');
 }
 
+/* Formato de hora */
+
 function horaActual() {
     let minutos = formatoFechaHora(fecha.getMinutes());
     let horas = formatoFechaHora(fecha.getHours());
@@ -30,13 +26,12 @@ function horaActual() {
     return [horas, minutos, segundos].join(':');
 }
 
-function agregarLista(valor, listado) {
-    if (valor !== "") {
-        listado.innerHTML += `
-        <li class="list-group-item"><strong>${usuario}</strong> - ${fechaActual()} ${horaActual()} - ${estrella(calificacion.value)} <br>${valor}</li>
-        `;
-    }
+/* Agregar un 0 para el numero correspondiente */
+
+function formatoFechaHora(num) {
+    return num < 10 ? `0${num}` : num;
 }
+/* Funcion para mostrar los productos */
 
 function mostrarProductos() {
 
@@ -70,6 +65,8 @@ function mostrarProductos() {
     infoProducto.innerHTML += row;
 }
 
+/* Funcion para dibujar las estrellas segun el score correspondiente */
+
 function estrella(num) {
     let estrellaLlena = `<span class="bi bi-star-fill"></span>`;
     let estrellaVacia = `<span class="bi bi-star"></span>`
@@ -86,6 +83,8 @@ function estrella(num) {
         return estrellaLlena.repeat(num);
     }
 }
+
+/* Funcion para mostrar los comentarios de los productos */
 
 function mostrarComentarios() {
     let htmlContentToAppend = "";
@@ -112,7 +111,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
             console.log(productoFotos)
         }
     });
-
     getJSONData(PRODUCT_INFO_COMMENTS_URL + getID + EXT_TYPE).then(function (comentariosObj) {
         if (comentariosObj.status === "ok") {
             comentarios = comentariosObj.data
@@ -121,18 +119,16 @@ document.addEventListener("DOMContentLoaded", function (e) {
         }
     });
 
-    while (localStorage.getItem(i)) {
-        agregarLista(localStorage.getItem(i), cuadroComentarios);
-        i++;
-    }
+    /* Funcion para agregar comentarios nuevos en los productos */
 
     botonEnviar.addEventListener("click", function () {
-        let valor = comentarioUsuario.value;
-        localStorage.setItem(i.toString(), valor)
-        i++;
+        let comentarioUsuario = document.getElementById("comentarioNuevo").value;
+        let rating = document.getElementById("puntaje").value;
 
-        agregarLista(valor, cuadroComentarios);
-        comentarioUsuario.value = "";
+        cuadroComentarios.innerHTML += `
+            <li class="list-group-item"><strong>${usuario}</strong> - ${fechaActual()} ${horaActual()} - ${estrella(rating)} <br>${comentarioUsuario}</li>
+            `;
+
+        document.getElementById("comentarioNuevo").value = "";
     });
-
 })
