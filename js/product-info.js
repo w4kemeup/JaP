@@ -8,6 +8,12 @@ let botonEnviar = document.getElementById("puntajeBtn");
 let usuario = localStorage.getItem("correo");
 const fecha = new Date();
 
+/* Agregar un 0 para el numero correspondiente */
+
+function formatoFechaHora(num) {
+    return num < 10 ? `0${num}` : num;
+}
+
 /* Formato de fecha  */
 
 function fechaActual() {
@@ -26,42 +32,37 @@ function horaActual() {
     return [horas, minutos, segundos].join(':');
 }
 
-/* Agregar un 0 para el numero correspondiente */
-
-function formatoFechaHora(num) {
-    return num < 10 ? `0${num}` : num;
-}
 /* Funcion para mostrar los productos */
 
 function mostrarProductos() {
 
     let row = "";
     row = `
-    <tr>
-    <td><h1>${producto.name}</h1><br><br><hr></td>
-    </tr>
-    <tr>
-    <td><strong>Precio</strong><br>${producto.currency} ${producto.cost}</td>
-    </tr>
-    <tr>
-    <td><br><strong>Descripción</strong><br>${producto.description}</td>
-    </tr>
-    <tr>
-    <td><br><strong>Categoría</strong><br>${producto.category}</td>
-    </tr>
-    <tr>
-    <td><br><strong>Cantidad de vendidos</strong><br>${producto.soldCount}</td>
-    </tr>
-    <tr>
-    <td><br><strong>Imágenes ilustrativas</strong><br><br>
-    <img src="${productoFotos[0]}" style=width:350px>
-    <img src="${productoFotos[1]}" style=width:350px>
-    <img src="${productoFotos[2]}" style=width:350px>
-    <img src="${productoFotos[3]}" style=width:350px>
+        <tr>
+        <td><h1>${producto.name}</h1><br><br><hr></td>
+        </tr>
+        <tr>
+        <td><strong>Precio</strong><br>${producto.currency} ${producto.cost}</td>
+        </tr>
+        <tr>
+        <td><br><strong>Descripción</strong><br>${producto.description}</td>
+        </tr>
+        <tr>
+        <td><br><strong>Categoría</strong><br>${producto.category}</td>
+        </tr>
+        <tr>
+        <td><br><strong>Cantidad de vendidos</strong><br>${producto.soldCount}</td>
+        </tr>
+        <tr>
+        <td><br><strong>Imágenes ilustrativas</strong><br><br>
+        <img src="${productoFotos[0]}" style=width:350px>
+        <img src="${productoFotos[1]}" style=width:350px>
+        <img src="${productoFotos[2]}" style=width:350px>
+        <img src="${productoFotos[3]}" style=width:350px>
 
-    </td>
-    </tr>   
-    `;
+        </td>
+        </tr>   
+        `;
     infoProducto.innerHTML += row;
 }
 
