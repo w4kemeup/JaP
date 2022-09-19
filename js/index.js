@@ -11,8 +11,4 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("catID", 103);
         window.location = "products.html"
     });
-    /* document.getElementById("signoutBtn").addEventListener("click", function () {
-        localStorage.removeItem("correo");
-        window.location = "index.html"
-    }) */
-});
+})
