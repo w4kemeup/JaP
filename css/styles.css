@@ -456,3 +456,28 @@ td {
 .carousel {
   width: 25%;
 }
+
+#productosRelacionados h5 {
+  margin-top: 20px;
+}
+
+#contenedorProductoRelacionado {
+  margin-top: 20px;
+  max-width: 450px;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+#contenedorProductoRelacionado img {
+  margin-right: 100px;
+}
+
+#contenedorProductoRelacionado img:hover {
+  opacity: 0.7;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+  filter: invert(1);
+}

@@ -2,12 +2,21 @@ let getID = localStorage.getItem("productoID");
 let producto = [];
 let productoFotos = [];
 let comentarios = [];
+let productoRelacionado = [];
 let infoProducto = document.getElementById("contenidoProducto");
 let cuadroComentarios = document.getElementById("contenidoComentarios");
 let botonEnviar = document.getElementById("puntajeBtn");
 let usuario = localStorage.getItem("correo");
 const fecha = new Date();
+let contenidoRelacionado = document.getElementById("contenedorProductoRelacionado");
 
+/* Productos relacionados */
+
+function setCatID(id) {
+    localStorage.setItem("productoID", id);
+    window.location = "product-info.html"
+    console.log(id)
+}
 /* Agregar un 0 para el numero correspondiente */
 
 function formatoFechaHora(num) {
@@ -91,6 +100,20 @@ function mostrarProductos() {
     infoProducto.innerHTML += row;
 }
 
+function productosRelacionados() {
+    let htmlContentToAppend = "";
+    for (let i = 0; i < productoRelacionado.length; i++) {
+        let relacionado = productoRelacionado[i];
+
+        htmlContentToAppend = `
+        <div onclick="setCatID(${relacionado.id})" class="cursor-active" style=width:200px>
+        <img src="${relacionado.image}" style=width:200px>
+        <p>${relacionado.name}</p>
+        </div>
+        `;
+        contenidoRelacionado.innerHTML += htmlContentToAppend;
+    }
+}
 /* Funcion para dibujar las estrellas segun el score correspondiente */
 
 function estrella(num) {
@@ -132,7 +155,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
         if (resultObj.status === "ok") {
             producto = resultObj.data
             productoFotos = resultObj.data.images
+            productoRelacionado = resultObj.data.relatedProducts
             mostrarProductos()
+            productosRelacionados()
             console.log(producto)
             console.log(productoFotos)
         }
