@@ -438,6 +438,21 @@ h4 {
   margin-top: 10px;
 }
 
-table {
+
+.tablaProducto,
+td {
+  position: relative;
+  left: 5px;
+  margin-top: 50px;
   font-family: Raleway;
+}
+
+#contenidoProducto {
+  line-height: 2rem;
+  margin-top: 50px;
+  padding-left: 250px;
+}
+
+.carousel {
+  width: 25%;
 }

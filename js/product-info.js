@@ -38,30 +38,55 @@ function mostrarProductos() {
 
     let row = "";
     row = `
-        <tr>
-        <td><h1>${producto.name}</h1><br><br><hr></td>
-        </tr>
-        <tr>
-        <td><strong>Precio</strong><br>${producto.currency} ${producto.cost}</td>
-        </tr>
-        <tr>
-        <td><br><strong>Descripción</strong><br>${producto.description}</td>
-        </tr>
-        <tr>
-        <td><br><strong>Categoría</strong><br>${producto.category}</td>
-        </tr>
-        <tr>
-        <td><br><strong>Cantidad de vendidos</strong><br>${producto.soldCount}</td>
-        </tr>
-        <tr>
-        <td><br><strong>Imágenes ilustrativas</strong><br><br>
-        <img src="${productoFotos[0]}" style=width:350px>
-        <img src="${productoFotos[1]}" style=width:350px>
-        <img src="${productoFotos[2]}" style=width:350px>
-        <img src="${productoFotos[3]}" style=width:350px>
-
-        </td>
-        </tr>   
+       <h1>${producto.name}</h1><br><hr>
+       
+       <strong>Precio</strong><br>${producto.currency} ${producto.cost}
+      
+        <br><strong>Descripción</strong><br>${producto.description}
+        
+        <br><strong>Categoría</strong><br>${producto.category}
+        
+        <td><br><strong>Productos Relacionados</strong><br>${producto.relatedProducts[0].name}
+       
+        <br><strong>Cantidad de vendidos</strong><br>${producto.soldCount}
+       
+        <br><strong>Imágenes ilustrativas</strong><br><br>
+              <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
+                aria-label="Slide 4"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="2000">
+                <img src=${productoFotos[0]} class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="${productoFotos[1]}" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="${productoFotos[2]}" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="${productoFotos[3]}" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>           
         `;
     infoProducto.innerHTML += row;
 }
