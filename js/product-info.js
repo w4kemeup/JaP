@@ -55,8 +55,6 @@ function mostrarProductos() {
         
         <br><strong>Categoría</strong><br>${producto.category}
         
-        <td><br><strong>Productos Relacionados</strong><br>${producto.relatedProducts[0].name}
-       
         <br><strong>Cantidad de vendidos</strong><br>${producto.soldCount}
        
         <br><strong>Imágenes ilustrativas</strong><br><br>
