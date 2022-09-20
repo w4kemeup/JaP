@@ -7,10 +7,10 @@ let infoProducto = document.getElementById("contenidoProducto");
 let cuadroComentarios = document.getElementById("contenidoComentarios");
 let botonEnviar = document.getElementById("puntajeBtn");
 let usuario = localStorage.getItem("correo");
-const fecha = new Date();
 let contenidoRelacionado = document.getElementById("contenedorProductoRelacionado");
+const fecha = new Date();
 
-/* Productos relacionados */
+/* Redireccionar a productos relacionados */
 
 function setCatID(id) {
     localStorage.setItem("productoID", id);
@@ -99,6 +99,8 @@ function mostrarProductos() {
         `;
     infoProducto.innerHTML += row;
 }
+
+/* Funcion para desplegar productos relacionados */
 
 function productosRelacionados() {
     let htmlContentToAppend = "";
