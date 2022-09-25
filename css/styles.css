@@ -274,7 +274,7 @@ a.custom-card:hover {
 }
 
 #lgnBtn:focus {
-  border: 2px solid #0087F7;
+  box-shadow: 0 0 0 2px #0087F7;
 }
 
 #botonOscuro {
@@ -459,6 +459,7 @@ td {
 
 #productosRelacionados h5 {
   margin-top: 20px;
+  width: 450px;
 }
 
 #contenedorProductoRelacionado {
@@ -469,15 +470,55 @@ td {
   text-align: center;
 }
 
+#productosRelacionados {
+  width: 450px;
+}
+
 #contenedorProductoRelacionado img {
   margin-right: 100px;
 }
 
 #contenedorProductoRelacionado img:hover {
-  opacity: 0.7;
+  opacity: 0.9;
 }
 
 .carousel-control-next,
 .carousel-control-prev {
   filter: invert(1);
+}
+
+#contenedorTarjetas {
+  display: flex;
+}
+
+.card {
+  margin: 0.5rem;
+  width: 350px;
+  padding: 20px;
+  text-align: center;
+}
+
+#carouselExampleInterval {
+  width: 1000px;
+  display: grid;
+  place-items: center;
+}
+
+.bi-chevron-right {
+  margin-left: 100px;
+}
+
+.bi-chevron-left {
+  margin-right: 100px;
+}
+
+#comentarioNuevoCarrusel {
+  display: flex;
+
+}
+
+.carousel-indicators [data-bs-target] {
+  height: 10px;
+  width: 10px;
+  border-radius: 100%;
 }

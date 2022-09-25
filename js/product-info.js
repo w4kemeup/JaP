@@ -3,6 +3,7 @@ let producto = [];
 let productoFotos = [];
 let comentarios = [];
 let productoRelacionado = [];
+let contenedorTarjetas = document.getElementById("contenedorTarjetas");
 let infoProducto = document.getElementById("contenidoProducto");
 let cuadroComentarios = document.getElementById("contenidoComentarios");
 let botonEnviar = document.getElementById("puntajeBtn");
@@ -48,7 +49,7 @@ function mostrarProductos() {
     let row = "";
     row = `
        <h1>${producto.name}</h1><br><hr>
-       
+              
        <strong>Precio</strong><br>${producto.currency} ${producto.cost}
       
         <br><strong>Descripción</strong><br>${producto.description}
@@ -106,10 +107,11 @@ function productosRelacionados() {
         let relacionado = productoRelacionado[i];
 
         htmlContentToAppend = `
-        <div onclick="setCatID(${relacionado.id})" class="cursor-active" style=width:200px>
-        <img src="${relacionado.image}" style=width:200px>
+        <div onclick="setCatID(${relacionado.id})" class="cursor-active"  style=width:200px>
+        <img src="${relacionado.image}"  style=width:200px>
         <p>${relacionado.name}</p>
         </div>
+        
         `;
         contenidoRelacionado.innerHTML += htmlContentToAppend;
     }
@@ -141,14 +143,22 @@ function mostrarComentarios() {
         let item = comentarios[i];
 
         htmlContentToAppend = `      
-        <tr>
-        <td><strong>${item.user}</strong> - ${item.dateTime} - ${estrella(item.score)}<br>
-        ${item.description}</td>
-        </tr> 
+        
+        
+        <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem;">
+        <div class="card-body">
+        <h5 class="card-title fw-bold">${item.user}</h5>
+        <p class="card-text">${item.description}</p>
+        <p class="card-text">${estrella(item.score)}</p>
+        <p class="card-text">${item.dateTime}</p>
+        </div>
+        </div>
         `;
-        cuadroComentarios.innerHTML += htmlContentToAppend;
+
+        contenedorTarjetas.innerHTML += htmlContentToAppend;
     }
 }
+
 
 document.addEventListener("DOMContentLoaded", function (e) {
     getJSONData(PRODUCT_INFO_URL + getID + EXT_TYPE).then(function (resultObj) {
@@ -176,10 +186,19 @@ document.addEventListener("DOMContentLoaded", function (e) {
         let comentarioUsuario = document.getElementById("comentarioNuevo").value;
         let rating = document.getElementById("puntaje").value;
 
-        cuadroComentarios.innerHTML += `
-            <li class="list-group-item"><strong>${usuario}</strong> - ${fechaActual()} ${horaActual()} - ${estrella(rating)} <br>${comentarioUsuario}</li>
+        document.getElementById("comentarioNuevoCarrusel").innerHTML += `      
+                
+            <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem;">
+            <div class="card-body">
+            <h5 class="card-title fw-bold" >${usuario}</h5>
+            <p class="card-text">${comentarioUsuario}</p>
+            <p class="card-text">${estrella(rating)}</p>
+            <p class="card-text">${fechaActual()} ${horaActual()}</p>
+            </div>
+            </div>
             `;
 
         document.getElementById("comentarioNuevo").value = "";
+        document.getElementById("puntaje").value = "1";
     });
 })
