@@ -522,3 +522,50 @@ td {
   width: 10px;
   border-radius: 100%;
 }
+
+.form-control {
+  width: 70px;
+}
+
+#containerCarrito {
+  max-width: 60%;
+  margin-top: 20px;
+}
+
+#containerCarrito h4 {
+  margin-top: 40px;
+}
+
+#containerCarrito table {
+  margin-top: 15px;
+}
+
+#contenedorDireccionEnvio {
+  margin-top: 30px;
+}
+
+#contenedorDireccionEnvio h4 {
+  margin-top: 15px;
+}
+
+#direccionEsquina,
+#direccionCalle {
+  width: 400px;
+}
+
+#direccionNumero {
+  width: 250px;
+}
+
+.inputCalleNumero {
+  display: flex;
+}
+
+.inputCalleNumero input {
+  margin-top: 40px;
+  transform: translateX(-2.3rem);
+}
+
+#direccionNumero {
+  transform: translateX(-3.8rem)
+}
