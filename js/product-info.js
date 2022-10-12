@@ -1,4 +1,5 @@
 let getID = localStorage.getItem("productoID");
+let catID = localStorage.getItem("catID");
 let producto = [];
 let productoFotos = [];
 let comentarios = [];
@@ -9,7 +10,10 @@ let cuadroComentarios = document.getElementById("contenidoComentarios");
 let botonEnviar = document.getElementById("puntajeBtn");
 let usuario = localStorage.getItem("correo");
 let contenidoRelacionado = document.getElementById("contenedorProductoRelacionado");
+let botonComprar = document.getElementById("btnComprar");
 const fecha = new Date();
+let urlProducto = (PRODUCT_INFO_URL + getID + EXT_TYPE)
+let comentariosProducto = (PRODUCT_INFO_COMMENTS_URL + getID + EXT_TYPE)
 
 /* Redireccionar a productos relacionados */
 
@@ -45,30 +49,31 @@ function horaActual() {
 /* Funcion para mostrar los productos */
 
 function mostrarProductos() {
+    let nombre = document.getElementById("nombreProducto");
+    let precio = document.getElementById("costo");
+    let descripcion = document.getElementById("descripcion");
+    let categoria = document.getElementById("categoria");
+    let vendidos = document.getElementById("cantidadVendidos");
 
-    let row = "";
-    row = `
-       <h1>${producto.name}</h1><br><hr>
-              
-       <strong>Precio</strong><br>${producto.currency} ${producto.cost}
-      
-        <br><strong>Descripción</strong><br>${producto.description}
-        
-        <br><strong>Categoría</strong><br>${producto.category}
-        
-        <br><strong>Cantidad de vendidos</strong><br>${producto.soldCount}
-       
-        <br><strong>Imágenes ilustrativas</strong><br><br>
-              <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+    nombre.innerHTML = producto.name;
+    precio.innerHTML = producto.currency + ` ` + producto.cost;
+    descripcion.innerHTML = producto.description;
+    categoria.innerHTML = producto.category;
+    vendidos.innerHTML = producto.soldCount;
+
+    let htmlContentToAppend = "";
+
+    htmlContentToAppend = `
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
+            aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
+            aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                aria-label="Slide 3"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
-                aria-label="Slide 4"></button>
+            aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
+            aria-label="Slide 4"></button>
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active" data-bs-interval="2000">
@@ -85,18 +90,19 @@ function mostrarProductos() {
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
         </button>
         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
         </button>
-    </div>           
-        `;
-    infoProducto.innerHTML += row;
+    </div>
+    `;
+    document.getElementById("divCarrusel").innerHTML = htmlContentToAppend;
+
 }
 
 /* Funcion para desplegar productos relacionados */
@@ -145,9 +151,9 @@ function mostrarComentarios() {
         htmlContentToAppend = `      
         
         
-        <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem;">
+        <div class="card shadow p-3 mb-5 bg-body rounded border-dark" style="width: 18rem;">
+        <h5 class="card-header fw-semibold text">${item.user}</h5>
         <div class="card-body">
-        <h5 class="card-title fw-bold">${item.user}</h5>
         <p class="card-text">${item.description}</p>
         <p class="card-text">${estrella(item.score)}</p>
         <p class="card-text">${item.dateTime}</p>
@@ -159,23 +165,62 @@ function mostrarComentarios() {
     }
 }
 
+/* Funcion para agregar item al carrito */
+
+function addItemToCart() {
+
+    let canasta = [];
+    canasta.push(producto)
+
+    if (!localStorage.getItem("cart")) {
+        localStorage.setItem("cart", JSON.stringify(canasta));
+    } else {
+        let nuevoItem = JSON.parse(localStorage.getItem("cart"));
+        nuevoItem.push(producto);
+
+        localStorage.setItem("cart", JSON.stringify(nuevoItem));
+    }
+}
+
+/* Alerta de compra exitosa */
+
+function compraExitosa() {
+    const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+
+    const alert = (message, type) => {
+        const wrapper = document.createElement('div')
+        wrapper.innerHTML = [
+            `<div class="alert alert-${type} alert-dismissible mt-4" role="alert">`,
+            `   <div>${message}</div>`,
+            '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+            '</div>'
+        ].join('')
+
+        alertPlaceholder.append(wrapper)
+    }
+
+    const alertTrigger = document.getElementById('btnComprar')
+    if (alertTrigger) {
+        alertTrigger.addEventListener('click', () => {
+            alert('¡Producto agregado al <a href="cart.html" class="alert-link">carrito</a> correctamente!', 'success')
+        })
+    }
+
+}
 
 document.addEventListener("DOMContentLoaded", function (e) {
-    getJSONData(PRODUCT_INFO_URL + getID + EXT_TYPE).then(function (resultObj) {
+    getJSONData(urlProducto).then(function (resultObj) {
         if (resultObj.status === "ok") {
             producto = resultObj.data
             productoFotos = resultObj.data.images
             productoRelacionado = resultObj.data.relatedProducts
             mostrarProductos()
             productosRelacionados()
-            console.log(producto)
-            console.log(productoFotos)
         }
     });
-    getJSONData(PRODUCT_INFO_COMMENTS_URL + getID + EXT_TYPE).then(function (comentariosObj) {
+    getJSONData(comentariosProducto).then(function (comentariosObj) {
         if (comentariosObj.status === "ok") {
             comentarios = comentariosObj.data
-            console.log(comentarios)
             mostrarComentarios()
         }
     });
@@ -187,13 +232,13 @@ document.addEventListener("DOMContentLoaded", function (e) {
         let rating = document.getElementById("puntaje").value;
 
         document.getElementById("comentarioNuevoCarrusel").innerHTML += `      
-                
-            <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem;">
-            <div class="card-body">
-            <h5 class="card-title fw-bold" >${usuario}</h5>
-            <p class="card-text">${comentarioUsuario}</p>
-            <p class="card-text">${estrella(rating)}</p>
-            <p class="card-text">${fechaActual()} ${horaActual()}</p>
+        
+        <div class="card shadow p-3 mb-5 bg-body rounded " style="width: 18rem;">
+        <div class="card-body">
+        <h5 class="card-title fw-bold" >${usuario}</h5>
+        <p class="card-text">${comentarioUsuario}</p>
+        <p class="card-text">${estrella(rating)}</p>
+        <p class="card-text">${fechaActual()} ${horaActual()}</p>
             </div>
             </div>
             `;
@@ -201,4 +246,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
         document.getElementById("comentarioNuevo").value = "";
         document.getElementById("puntaje").value = "1";
     });
+    botonComprar.addEventListener("click", addItemToCart)
+    compraExitosa()
 })

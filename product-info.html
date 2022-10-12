@@ -36,8 +36,10 @@
               data-bs-toggle="dropdown" aria-expanded="false">
             </button>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-              <li><a class="dropdown-item active" href="cart.html"><span class="bi bi-cart4"></span> Mi carrito</a></li>
+              <li><a class="dropdown-item active" href="cart.html"><span class="bi bi-cart4"></span> Mi carrito </a>
+              </li>
               <li><a class="dropdown-item" href="my-profile.html"><span class="bi bi-person-fill"></span> Mi perfil</a>
+              </li>
               <li><a class="dropdown-item" id="signoutBtn" href="#"><span class="bi bi-box-arrow-left"></span> Cerrar
                   sesión</a></li>
             </ul>
@@ -47,7 +49,30 @@
     </div>
   </nav>
   <main role="main" class="pb-5">
-    <div id="contenidoProducto"></div>
+    <div id="contenidoProducto">
+      <div id="test1">
+        <h1 id="nombreProducto"></h1><br>
+        <div id="liveAlertPlaceholder"></div>
+        <button type="button" class="btn btn-success" id="btnComprar">Comprar</button>
+      </div>
+      <hr>
+      <div id="listado">
+        <strong>Precio</strong>
+        <a href="products.html"><span class="bi bi-arrow-left-short">Volver al listado</span></a>
+      </div>
+      <p id="costo"></p>
+      <strong>Descripción</strong>
+      <p id="descripcion"></p>
+      <strong>Categoría</strong>
+      <p id="categoria"></p>
+      <strong>Cantidad de vendidos</strong>
+      <p id="cantidadVendidos"></p>
+      <strong>Imágenes ilustrativas</strong>
+      <div id="divCarrusel">
+
+      </div>
+    </div>
+    </div>
     <div class="contenedorComentarios" id="testComment">
       <h4>Comentarios</h4>
       <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
@@ -56,10 +81,6 @@
             <div id="contenedorTarjetas">
             </div>
           </div>
-          <!-- <div class="carousel-item" data-bs-interval="2000">
-            <div id="comentarioNuevoCarrusel">
-            </div>
-          </div> -->
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
             data-bs-slide="prev">
             <span class="bi bi-chevron-left" aria-hidden="true"></span>
@@ -125,6 +146,29 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/product-info.js"></script>
+  <!-- <script>
+    const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+
+    const alert = (message, type) => {
+      const wrapper = document.createElement('div')
+      wrapper.innerHTML = [
+        `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+        `   <div>${message}</div>`,
+        '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+        '</div>'
+      ].join('')
+
+      alertPlaceholder.append(wrapper)
+    }
+
+    const alertTrigger = document.getElementById('btnComprar')
+    if (alertTrigger) {
+      alertTrigger.addEventListener('click', () => {
+        alert('Producto agregado correctamente', 'success')
+      })
+    }
+
+  </script> -->
 </body>
 
 </html>

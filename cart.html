@@ -35,8 +35,10 @@
               data-bs-toggle="dropdown" aria-expanded="false">
             </button>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-              <li><a class="dropdown-item active" href="cart.html"><span class="bi bi-cart4"></span> Mi carrito</a></li>
+              <li><a class="dropdown-item active" href="cart.html"><span class="bi bi-cart4"></span> Mi carrito </a>
+              </li>
               <li><a class="dropdown-item" href="my-profile.html"><span class="bi bi-person-fill"></span> Mi perfil</a>
+              </li>
               <li><a class="dropdown-item" id="signoutBtn" href="#"><span class="bi bi-box-arrow-left"></span> Cerrar
                   sesión</a></li>
             </ul>
@@ -49,7 +51,7 @@
     <div id="containerCarrito" class="mx-auto">
       <h4 class="text-center fw-semibold fs-2">Carrito de compras</h4>
       <h4 class="text-start fw-semibold">Articulos a comprar</h4>
-      <table class="table" id="tablaProducto">
+      <table class="table" id="tablaCarrito">
         <thead>
           <tr>
             <th scope="col"></th>
@@ -59,14 +61,7 @@
             <th scope="col">Subtotal</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <th scope="row" id="fotoProducto"></th>
-            <td id="nombreProducto"></td>
-            <td id="costoProducto"></td>
-            <td><input type="number" id="cantidadProducto" class="form-control" value="1" min="1"></td>
-            <th id="subtotalProdcuto"></th>
-          </tr>
+        <tbody id="testRow">
         </tbody>
       </table>
       <hr>
@@ -97,7 +92,7 @@
           <h4 class="fw-semibold fs-6">Calle</h4>
           <input type="text" name="calle" id="direccionCalle" class="form-control">
           <h4 class="fw-semibold fs-6">Número</h4>
-          <input type="text" name="calle" id="direccionNumero" class="form-control">
+          <input type="number" name="calle" id="direccionNumero" class="form-control">
         </div>
         <h4 class="fw-semibold fs-6">Esquina</h4>
         <input type="text" name="calle" id="direccionEsquina" class="form-control">

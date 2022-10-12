@@ -1,5 +1,3 @@
-/* variables y constantes necesarias para el ejercicio */
-
 const ORDER_ASC_BY_PRICE = "priceUp";
 const ORDER_DESC_BY_PRICE = "priceDown";
 const ORDER_BY_PROD_RELEVANCE = "Rel.";
@@ -11,6 +9,7 @@ let minCount = undefined;
 let maxCount = undefined;
 let search = undefined;
 let getID = localStorage.getItem("catID");
+let urlProductos = PRODUCTS_URL + getID + EXT_TYPE
 
 
 function setCatID(id) {
@@ -79,7 +78,13 @@ function mostrarProductos() {
             </div>
             </div>
              `;
-            }
+            } /* else {
+                htmlContentToAppend += `
+                <div class="alert alert-danger mt-4" role="alert">
+                    No hay resultados
+                </div>
+                    `;
+            } */
         }
     }
     document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
@@ -104,13 +109,16 @@ function sortAndShowProductos(sortCriteria, productosFiltrados) {
 basados en precio mayor o menor y productos vendidos */
 
 document.addEventListener("DOMContentLoaded", function (e) {
-    getJSONData(PRODUCTS_URL + getID + EXT_TYPE).then(function (resultObj) {
+    getJSONData(urlProductos).then(function (resultObj) {
         if (resultObj.status === "ok") {
             listadoProductos = resultObj.data.products
             listadoProductosNombres = resultObj.data
             mostrarProductos()
-            console.log(resultObj.data)
+            localStorage.setItem("catalogo", JSON.stringify(listadoProductos));
         }
+        /* if (!localStorage.getItem("cart")); {
+            localStorage.setItem("cart", "[]");
+        } */
     });
 
     document.getElementById("sortPriceUp").addEventListener("click", function () {

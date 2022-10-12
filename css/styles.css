@@ -342,6 +342,10 @@ a.custom-card:hover {
 }
 
 #buscador:hover {
+  cursor: pointer;
+}
+
+#buscador:focus {
   position: absolute;
   margin-top: 5px;
   right: 10px;
@@ -351,10 +355,16 @@ a.custom-card:hover {
   border-start-end-radius: 50px;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
+  outline: none;
+  cursor: text;
 }
 
-#buscador:focus {
-  outline: none;
+#buscador::placeholder {
+  visibility: hidden;
+}
+
+#buscador:focus::placeholder {
+  visibility: visible;
 }
 
 #lupa {
@@ -568,4 +578,17 @@ td {
 
 #direccionNumero {
   transform: translateX(-3.8rem)
+}
+
+.inputCalleNumero input::-webkit-outer-spin-button,
+.inputCalleNumero input::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+#listado,
+#test1 {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 450px;
 }
