@@ -177,6 +177,5 @@ document.addEventListener("DOMContentLoaded", function (e) {
         search = document.getElementById("buscador").value;
 
         mostrarProductos();
-
     })
 })

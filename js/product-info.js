@@ -177,7 +177,6 @@ function addItemToCart() {
     } else {
         let nuevoItem = JSON.parse(localStorage.getItem("cart"));
         nuevoItem.push(producto);
-
         localStorage.setItem("cart", JSON.stringify(nuevoItem));
     }
 }

@@ -206,51 +206,9 @@ a.custom-card:hover {
   font-weight: 600;
 }
 
-
-.texto {
-  position: relative;
-  padding-top: 10px;
-}
-
-
-.texto input {
-  width: 300px;
-}
-
 #usuario,
 #password {
-  padding-left: 10px;
-  border: 0.5px solid black;
-}
-
-#usuario:focus,
-#password:focus {
-  outline: none;
-}
-
-#alertaUsuario,
-#alertaPassword {
-  color: red;
-  position: absolute;
-  padding-left: 270px;
-  margin-top: 3px;
-  visibility: hidden;
-}
-
-#correctoUser,
-#correctoPassword {
-  color: green;
-  position: absolute;
-  padding-left: 270px;
-  margin-top: 3px;
-  visibility: hidden;
-}
-
-#mailError,
-#passError {
-  padding-top: 10px;
-  color: red;
-  visibility: hidden;
+  width: 300px;
 }
 
 .logo {
@@ -267,6 +225,8 @@ a.custom-card:hover {
   background-color: #0d6efd;
   color: white;
   border: none;
+  width: 100px;
+  margin-top: 10px;
 }
 
 #lgnBtn:hover {
@@ -452,7 +412,6 @@ h4 {
 .tablaProducto,
 td {
   position: relative;
-  left: 5px;
   margin-top: 50px;
   font-family: Raleway;
 }
@@ -592,3 +551,15 @@ td {
   justify-content: space-between;
   margin-right: 450px;
 }
+
+.bi-cart-x-fill {
+  cursor: pointer;
+}
+
+.bi-cart-x-fill:hover {
+  color: red;
+}
+
+/* .offcanvas {
+  width: 250px;
+} */

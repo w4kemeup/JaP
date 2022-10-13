@@ -25,27 +25,29 @@
         <div id="icono">
           <i class="bi bi-moon-fill" id="botonOscuro"></i>
         </div>
-        <div id="iconoC">
-        </div>
         <img class="logo" src="img/login.png">
         <div class="texto">
           <h3>Inicio de sesión</h3>
-          <label>Email</label> <br>
-          <i class="bi bi-exclamation-circle" id="alertaUsuario"></i>
-          <i class="bi bi-check-circle" id="correctoUser"></i>
-          <input id="usuario" type="email" placeholder="Email" required><br>
-          <label id="mailError">Ingrese su e-mail</label>
-        </div>
-        <div class="texto">
-          <label>Contraseña</label><br>
-          <i class="bi bi-exclamation-circle" id="alertaPassword"></i>
-          <i class="bi bi-check-circle" id="correctoPassword"></i>
-          <input id="password" type="password" placeholder="Contraseña" required><br>
-          <label id="passError">Ingrese su contraseña</label>
-        </div>
-        <div class="ingresar">
-          <br><input type="button" value="Ingresar" id="lgnBtn">
-          <div id="buttonDiv"></div>
+          <form id="formularioLogIn" class="row g-3 needs-validation" novalidate>
+            <div class="col-md-4 mx-auto">
+              <label for="usuario" class="form-label mt-4">Email</label>
+              <input type="email" class="form-control mx-auto" id="usuario" placeholder="Email" required="" />
+              <div class="valid-feedback">¡Datos correctos!</div>
+              <div class="invalid-feedback"> Ingrese su e-mail</div>
+            </div>
+            <div class="texto">
+              <div class="col-md-4 mx-auto">
+                <label for="validationCustom02" class="form-label mt-4">Contraseña</label>
+                <input type="password" class="form-control mx-auto" id="password" placeholder="Contraseña"
+                  required="" />
+                <div class="valid-feedback">¡Datos correctos!</div>
+                <div class="invalid-feedback">Ingrese su contraseña</div>
+              </div>
+              <div class="ingresar col-12 mt-3">
+                <button class="btn btn-primary" type="submit" id="lgnBtn">Ingresar</button>
+                <div id="buttonDiv"></div>
+              </div>
+          </form>
         </div>
       </div>
     </div>

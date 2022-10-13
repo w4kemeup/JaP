@@ -14,7 +14,7 @@ function setCatID(id) {
 
 function carritoDeCompras() {
 
-    let fotoProducto = `<img src="${productoFetch.articles[0].image}" style=width:50px></img>`
+    let fotoProducto = `<img class="ms-3" src="${productoFetch.articles[0].image}" style=width:50px></img>`
     let nombreProducto = productoFetch.articles[0].name;
     let moneda = productoFetch.articles[0].currency;
     let costoProducto = productoFetch.articles[0].unitCost;
@@ -23,17 +23,34 @@ function carritoDeCompras() {
 
     let htmlContentToAppend = "";
     htmlContentToAppend += `
-              <tr>
-                  <th scope="row">${fotoProducto}</th>
-                  <td onclick="setCatID(${id})" class="cursor-active">${nombreProducto}</td>
-                  <td>${moneda} ${costoProducto}</td>
-                  <td><input type="number" class="form-control" id="cantidadProducto" onchange="priceFetch()" value="1" min="1"></td>
-                  <th id="subtotalProducto">${subtotal}</th>
+              <tr id="rowFetch">
+                  <td scope="col">${fotoProducto}</td>
+                  <td scope="col" onclick="setCatID(${id})" class="cursor-active">${nombreProducto}</td>
+                  <td scope="col">${moneda} ${costoProducto}</td>
+                  <td scope="col"><input type="number" class="form-control" id="cantidadProducto" onchange="priceFetch()" value="1" min="1"></td>
+                  <td scope="col" class="fw-bold" id="subtotalProducto">${subtotal}</td>
+                  <td scope="col" ><span class="bi bi-cart-x-fill" onclick="removerProductoFetch()"></span></td>
               </tr>`;
 
 
     tbody.innerHTML += htmlContentToAppend;
 
+}
+
+// Funcion para remover item de carrito //
+
+function removeItem(getID) {
+    let filtrados = cart.filter(function (el) {
+        return el.id != getID;
+    });
+    localStorage.setItem("cart", JSON.stringify(filtrados));
+    location.reload();
+}
+
+// Funcion remover el producto del fetch del carrito //
+
+function removerProductoFetch() {
+    document.getElementById("rowFetch").style.visibility = "hidden";
 }
 
 // Funcion actualizar precio del producto del fetch //
@@ -57,11 +74,12 @@ function itemsAgregados() {
 
         htmlContentToAppend += `
             <tr>
-                <th scope="row"><img src="${item.images[0]}"style=width:50px></img></th>
+                <td class="col-1"><img class="ms-3" src="${item.images[0]}"style=width:50px></img></td>
                 <td onclick="setCatID(${item.id})" class="cursor-active">${item.name}</td>
                 <td>${item.currency} ${item.cost}</td>
-                <td><input type="number" id="${item.id}"class="form-control cantidadItemAgregado" onchange="updatePrice(${item.id}, '${item.currency}', ${item.cost})" value="1" min="1"></td>
-                <th id="${item.cost}" class="subtotalProductoAgregado">${item.currency} ${item.cost}</th>
+                <td><input type="number" id="${item.id}"class="form-control cantidadItemAgregado " onchange="updatePrice(${item.id}, '${item.currency}', ${item.cost})" value="1" min="1"></td>
+                <td id="${item.cost}" class="subtotalProductoAgregado fw-bold">${item.currency} ${item.cost}</td>
+                <td><span class="bi bi-cart-x-fill" onclick="removeItem(${item.id})"></span></td>
             </tr>`;
     }
     tbody.innerHTML += htmlContentToAppend;
