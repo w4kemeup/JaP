@@ -28,7 +28,7 @@ nav a {
   }
 }
 
-.jumbotron {
+/* .jumbotron {
   height: 50vh;
   padding: 5em inherit;
   margin-bottom: 0;
@@ -39,9 +39,9 @@ nav a {
   background-repeat: no-repeat;
   color: black;
   font-weight: bold;
-}
+} */
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   .jumbotron {
     padding-top: 6rem;
     padding-bottom: 6rem;
@@ -65,7 +65,7 @@ nav a {
 
 .jumbotron .lead {
   font-size: 38px;
-}
+} */
 
 footer {
   padding-top: 3rem;
@@ -340,11 +340,8 @@ a.custom-card:hover {
   margin-top: 50px;
 }
 
-.contenedorComentarios {
-  display: grid;
-  place-items: left;
-  margin-left: 245px;
-  margin-top: 50px;
+.card-body {
+  max-height: 300px;
 }
 
 .checked {
@@ -376,17 +373,6 @@ a.custom-card:hover {
   color: orange;
 }
 
-#contenidoComentarios td {
-  border: 1px solid rgba(0, 0, 0, .125);
-  width: 1300px;
-  padding: 0.5rem 1rem;
-}
-
-#contenedorComentarios,
-h4 {
-  font-family: Raleway;
-}
-
 #contenedorComentariosNuevos {
   margin-top: 20px;
   font-family: Raleway;
@@ -416,35 +402,13 @@ td {
   font-family: Raleway;
 }
 
-#contenidoProducto {
-  line-height: 2rem;
-  margin-top: 50px;
-  padding-left: 250px;
-}
-
-.carousel {
-  width: 25%;
-}
-
-#productosRelacionados h5 {
-  margin-top: 20px;
-  width: 450px;
-}
-
 #contenedorProductoRelacionado {
-  margin-top: 20px;
-  max-width: 450px;
   display: flex;
   justify-content: space-between;
-  text-align: center;
 }
 
 #productosRelacionados {
   width: 450px;
-}
-
-#contenedorProductoRelacionado img {
-  margin-right: 100px;
 }
 
 #contenedorProductoRelacionado img:hover {
@@ -454,23 +418,6 @@ td {
 .carousel-control-next,
 .carousel-control-prev {
   filter: invert(1);
-}
-
-#contenedorTarjetas {
-  display: flex;
-}
-
-.card {
-  margin: 0.5rem;
-  width: 350px;
-  padding: 20px;
-  text-align: center;
-}
-
-#carouselExampleInterval {
-  width: 1000px;
-  display: grid;
-  place-items: center;
 }
 
 .bi-chevron-right {
@@ -483,7 +430,6 @@ td {
 
 #comentarioNuevoCarrusel {
   display: flex;
-
 }
 
 .carousel-indicators [data-bs-target] {
@@ -492,17 +438,9 @@ td {
   border-radius: 100%;
 }
 
-.form-control {
-  width: 70px;
-}
-
 #containerCarrito {
   max-width: 60%;
   margin-top: 20px;
-}
-
-#containerCarrito h4 {
-  margin-top: 40px;
 }
 
 #containerCarrito table {
@@ -539,12 +477,6 @@ td {
   transform: translateX(-3.8rem)
 }
 
-.inputCalleNumero input::-webkit-outer-spin-button,
-.inputCalleNumero input::-webkit-inner-spin-button {
-  appearance: none;
-  margin: 0;
-}
-
 #listado,
 #test1 {
   display: flex;
@@ -560,6 +492,29 @@ td {
   color: red;
 }
 
-/* .offcanvas {
-  width: 250px;
+/* #comentarioNuevo {
+  max-width: fit-content;
 } */
+
+#tablaCarrito input {
+  width: 70px;
+}
+
+#formasDePago input::-webkit-outer-spin-button,
+#formasDePago input::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+#contenedorDireccionEnvio input::-webkit-outer-spin-button,
+#contenedorDireccionEnvio input::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+
+#modalBody input[type=number]::-webkit-outer-spin-button,
+#modalBody input[type=number]::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}

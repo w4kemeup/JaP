@@ -4,37 +4,33 @@ let tbody = document.getElementById("testRow");
 let productoFetch = [];
 let carritoDefecto = (CART_INFO_URL + 25801 + EXT_TYPE);
 let usuario = localStorage.getItem("correo");
+let btnComprar = document.getElementById("finalizarCompra");
+let form = document.getElementById("formularioComprar");
+let subtotalUnitario = document.getElementById("subtotal");
+let costoEnvio = document.getElementById("costoEnvio");
+let precioTotal = document.getElementById("precioTotal");
+let metodoTarjeta = document.getElementById("tarjeta");
+let metodoBanco = document.getElementById("banco");
+let subtotal = 0;
+let envio;
+let metodoPago = document.getElementById("metodoPago");
+let metodoSeleccionado = document.getElementById("metodoSeleccionado");
+let precioSubtotal;
+
+let metodoPremium = document.getElementById("premium");
+let metodoExpress = document.getElementById("express");
+let metodoStandard = document.getElementById("standard");
+
+let numeroTarjeta = document.getElementById("numeroTarjeta")
+let codigoSeguridad = document.getElementById("codigoSeguridad")
+let vencimientoTarjeta = document.getElementById("vencimientoTarjeta")
+let numeroCuenta = document.getElementById("numeroCuenta")
+
+let totalEnvio = 0;
 
 function setCatID(id) {
     localStorage.setItem("productoID", id);
     window.location = "product-info.html"
-}
-
-// Funcion para dibujar en pantalla el producto original del carrito //
-
-function carritoDeCompras() {
-
-    let fotoProducto = `<img class="ms-3" src="${productoFetch.articles[0].image}" style=width:50px></img>`
-    let nombreProducto = productoFetch.articles[0].name;
-    let moneda = productoFetch.articles[0].currency;
-    let costoProducto = productoFetch.articles[0].unitCost;
-    let subtotal = moneda + ` ` + costoProducto;
-    let id = productoFetch.articles[0].id;
-
-    let htmlContentToAppend = "";
-    htmlContentToAppend += `
-              <tr id="rowFetch">
-                  <td scope="col">${fotoProducto}</td>
-                  <td scope="col" onclick="setCatID(${id})" class="cursor-active">${nombreProducto}</td>
-                  <td scope="col">${moneda} ${costoProducto}</td>
-                  <td scope="col"><input type="number" class="form-control" id="cantidadProducto" onchange="priceFetch()" value="1" min="1"></td>
-                  <td scope="col" class="fw-bold" id="subtotalProducto">${subtotal}</td>
-                  <td scope="col" ><span class="bi bi-cart-x-fill" onclick="removerProductoFetch()"></span></td>
-              </tr>`;
-
-
-    tbody.innerHTML += htmlContentToAppend;
-
 }
 
 // Funcion para remover item de carrito //
@@ -47,25 +43,9 @@ function removeItem(getID) {
     location.reload();
 }
 
-// Funcion remover el producto del fetch del carrito //
-
-function removerProductoFetch() {
-    document.getElementById("rowFetch").style.visibility = "hidden";
-}
-
-// Funcion actualizar precio del producto del fetch //
-
-function priceFetch() {
-    let subtotal = document.getElementById("subtotalProducto");
-    let quantity = document.getElementById("cantidadProducto").value;
-    let productCost = productoFetch.articles[0].unitCost;
-    let currency = productoFetch.articles[0].currency;
-    subtotal.innerHTML = currency + ` ` + (productCost * quantity);
-}
-
 // Funcion para agregar items deseados al carrito de compras //
 
-function itemsAgregados() {
+function agregarItems() {
 
     let htmlContentToAppend = "";
 
@@ -79,37 +59,159 @@ function itemsAgregados() {
                 <td>${item.currency} ${item.cost}</td>
                 <td><input type="number" id="${item.id}"class="form-control cantidadItemAgregado " onchange="updatePrice(${item.id}, '${item.currency}', ${item.cost})" value="1" min="1"></td>
                 <td id="${item.cost}" class="subtotalProductoAgregado fw-bold">${item.currency} ${item.cost}</td>
-                <td><span class="bi bi-cart-x-fill" onclick="removeItem(${item.id})"></span></td>
+                <td><button type="button" class="btn btn-outline-danger"><span class="bi bi-trash-fill" onclick="removeItem(${item.id})"></td>
             </tr>`;
     }
     tbody.innerHTML += htmlContentToAppend;
 }
 
-// Function para actualizar precios //
+// Funcion para actualizar precios en TABLA //
 
 function updatePrice(id, currency, precio) {
 
     let quantity = parseInt(document.getElementById(id).value);
     let subtotal = document.getElementById(precio);
     let resultado = quantity * precio;
-
     subtotal.innerHTML = currency + ` ` + resultado;
+    calcularSubtotal()
+    mostrarTotal()
+}
 
-    return resultado;
+// Funcion para calcular precios en SUBTOTAL //
+
+function calcularSubtotal() {
+
+    cart.forEach((item => {
+        subtotal += item.cost
+        subtotalUnitario.innerHTML = `USD` + ` ` + subtotal;
+    }))
+}
+
+// Funcion para calcular costo de ENVIO y TOTAL //
+
+function agregarListenersTipoEnvio() {
+
+    let inputs = document.querySelectorAll(".controlTipoEnvio");
+
+    inputs.forEach(input => {
+        input.addEventListener("click", function () {
+            calcularCostoEnvio()
+            mostrarCostoEnvio()
+            mostrarTotal()
+        })
+    })
 }
 
 
+function calcularCostoEnvio() {
+    let inputs = document.querySelectorAll(".controlTipoEnvio");
+    let metodoEnvio;
+
+    inputs.forEach(input => {
+        if (input.checked) {
+            metodoEnvio = input
+        }
+    })
+    totalEnvio = metodoEnvio.value * subtotal
+}
+
+// Funcion compra exitosa //
+
+function compraExitosa() {
+
+    let alerta = document.getElementById('liveAlertPlaceholder');
+
+    htmlContentToAppend = "";
+    htmlContentToAppend = `
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        ¡Has comprado con éxito!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    `;
+    alerta.innerHTML = htmlContentToAppend;
+}
+
+// Funcion para deshabilitar los inputs segun opcion de pago deseada  y desplegar la opcion de pago deseada //
+
+function disableInputs() {
+
+    let inputTarjeta = document.querySelectorAll(".metodo1");
+    let inputBanco = document.querySelectorAll(".metodo2");
+
+    if (metodoBanco.checked) {
+        inputTarjeta.forEach(input => {
+            input.disabled = true;
+        })
+        inputBanco.forEach(input => {
+            input.disabled = !true;
+        })
+        metodoSeleccionado.innerHTML = `Transferencia bancaria`;
+    } else if (metodoTarjeta.checked) {
+        inputBanco.forEach(input => {
+            input.disabled = true;
+        })
+        inputTarjeta.forEach(input => {
+            input.disabled = !true;
+        })
+        metodoSeleccionado.innerHTML = `Tarjeta de crédito`;
+    }
+}
+
+function errorModal() {
+
+    let inputsModal = document.querySelectorAll(".inputModal");
+
+    if ((!metodoTarjeta.checked) && (!metodoBanco.checked)) {
+        metodoSeleccionado.classList.add("is-invalid")
+        inputsModal.forEach(input => {
+            input.classList.add("is-invalid");
+        })
+
+    } else if ((metodoTarjeta.checked) || (metodoBanco.checked)) {
+        metodoSeleccionado.classList.remove("is-invalid", "error-compra")
+        inputsModal.forEach(input => {
+            input.classList.remove("is-invalid");
+        })
+    }
+}
+
+function mostrarCostoEnvio() {
+    costoEnvio.innerHTML = `USD` + ` ` + Math.round(totalEnvio);
+}
+
+
+function mostrarTotal() {
+    precioTotal.innerHTML = `USD` + ` ` + (Math.round(totalEnvio) + subtotal);
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     if (usuario != null) {
-        getJSONData(carritoDefecto).then(function (resultObj) {
-            if (resultObj.status === "ok") {
-                productoFetch = resultObj.data
-                carritoDeCompras()
-                itemsAgregados()
-            }
-        });
+        agregarItems()
+        calcularSubtotal()
     } else {
         alert("debe iniciar sesion")
         window.location = "index.html"
-    }
-})
+    };
+
+    form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+            errorModal();
+            event.preventDefault()
+            event.stopPropagation()
+        }
+        form.classList.add('was-validated')
+        if (form.checkValidity()) {
+            event.preventDefault()
+            compraExitosa()
+        }
+    });
+
+    metodoBanco.addEventListener("click", disableInputs)
+
+    metodoTarjeta.addEventListener("click", disableInputs)
+
+    agregarListenersTipoEnvio()
+    calcularCostoEnvio()
+    mostrarCostoEnvio()
+    mostrarTotal()
+}) 
