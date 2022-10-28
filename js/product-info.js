@@ -111,7 +111,7 @@ function mostrarProductos() {
       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
     </div>
     <div class="carousel-inner">
-      <div class="carousel-item active">
+      <div class="carousel-item active" data-bs-interval="2000">
         <img src="${productoFotos[0]}" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
             <button class="btn btn-dark mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">
@@ -162,7 +162,7 @@ function mostrarProductos() {
 
         </div>
       </div>
-      <div class="carousel-item">
+      <div class="carousel-item" data-bs-interval="2000">
         <img src="${productoFotos[1]}" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
             <button class="btn btn-dark mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">
@@ -211,7 +211,7 @@ function mostrarProductos() {
             </div>
         </div>
       </div>
-      <div class="carousel-item">
+      <div class="carousel-item" data-bs-interval="2000">
         <img src="${productoFotos[2]}" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
             <button class="btn btn-dark mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">
@@ -260,7 +260,7 @@ function mostrarProductos() {
             </div>
         </div>
       </div>
-      <div class="carousel-item">
+      <div class="carousel-item" data-bs-interval="2000">
         <img src="${productoFotos[3]}" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
             <button class="btn btn-dark mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">
