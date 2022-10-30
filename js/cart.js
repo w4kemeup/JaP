@@ -66,7 +66,7 @@ function mostrarCarritoDeCompras() {
                 <td class="col-1"><img class="ms-3" src="${item.images[0]}"style=width:50px></img></td>
                 <td onclick="setCatID(${item.id})" class="cursor-active">${item.name}</td>
                 <td> ${convertirDolares(item.currency, item.cost)}</td>
-                <td><input type="number" id="cantidad_${item.id}"class="form-control cantidadItemAgregado " onchange="actualizarPrecio(${item.id}, '${item.currency}', ${item.cost})" value="1" min="1"></td>
+                <td><input form="formularioComprar" type="number" id="cantidad_${item.id}" class="form-control cantidadItemAgregado " onchange="actualizarPrecio(${item.id}, '${item.currency}', ${item.cost})" value="1" min="1" required></td>
                 <td id="costo_${item.id}" class="subtotalProductoAgregado fw-bold">${convertirDolares(item.currency, item.cost)}</td>
                 <td><button type="button" class="btn btn-outline-danger"><span class="bi bi-trash-fill" onclick="removeItem(${item.id})"></td>
             </tr>`;
@@ -79,7 +79,14 @@ function mostrarCarritoDeCompras() {
 
 function actualizarPrecio(id, currency, precio) {
     let quantity = parseInt(document.getElementById(`cantidad_${id}`).value);
+    let validacionCantidad = document.getElementById(`cantidad_${id}`)
     let subtotal = document.getElementById(`costo_${id}`);
+
+    if (validacionCantidad.validity.rangeUnderflow) {
+        validacionCantidad.setCustomValidity("El producto debe tener una unidad");
+    } else {
+        validacionCantidad.setCustomValidity("");
+    } console.log(validacionCantidad.checkValidity());
 
     if (currency !== dolares) {
         let resultadoConvertido = quantity * Math.round(precio / 42);
