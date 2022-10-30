@@ -328,7 +328,6 @@ function mostrarProductos() {
 /* Funcion para agregar item al carrito */
 
 function agregarItemCarro() {
-
   let canasta = [];
   canasta.push(producto)
   compraExitosa()

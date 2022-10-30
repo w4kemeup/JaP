@@ -11,29 +11,25 @@ let costoEnvio = document.getElementById("costoEnvio");
 let precioTotal = document.getElementById("precioTotal");
 let metodoTarjeta = document.getElementById("tarjeta");
 let metodoBanco = document.getElementById("banco");
-let subtotal = 0;
-let envio;
 let metodoPago = document.getElementById("metodoPago");
 let metodoSeleccionado = document.getElementById("metodoSeleccionado");
-let precioSubtotal;
-
 let metodoPremium = document.getElementById("premium");
 let metodoExpress = document.getElementById("express");
 let metodoStandard = document.getElementById("standard");
-
 let numeroTarjeta = document.getElementById("numeroTarjeta")
 let codigoSeguridad = document.getElementById("codigoSeguridad")
 let vencimientoTarjeta = document.getElementById("vencimientoTarjeta")
 let numeroCuenta = document.getElementById("numeroCuenta")
-
-let totalEnvio = 0;
+const dolares = 'USD';
+let nuevoSubtotal = 0;
+let nuevoCostoEnvio = 0;
 
 function setCatID(id) {
     localStorage.setItem("productoID", id);
     window.location = "product-info.html"
 }
 
-// Funcion para remover item de carrito //
+// Remover item de carrito //
 
 function removeItem(getID) {
     let filtrados = cart.filter(function (el) {
@@ -43,56 +39,81 @@ function removeItem(getID) {
     location.reload();
 }
 
-// Funcion para agregar items deseados al carrito de compras //
+// Convertir pesos uruguayos a dolares // 
 
-function agregarItems() {
+function convertirDolares(currency, cost) {
+    let conversion;
+    if (currency !== dolares) {
+        currency = dolares;
+        conversion = Math.round(cost / 42);
+        return currency + ` ` + conversion
+    } else {
+        return currency + ` ` + cost;
+    }
+}
 
+// Agregar items deseados al carrito de compras //
+
+function mostrarCarritoDeCompras() {
     let htmlContentToAppend = "";
 
     for (let i = 0; i < cart.length; i++) {
         let item = cart[i];
 
         htmlContentToAppend += `
+
             <tr>
                 <td class="col-1"><img class="ms-3" src="${item.images[0]}"style=width:50px></img></td>
                 <td onclick="setCatID(${item.id})" class="cursor-active">${item.name}</td>
-                <td>${item.currency} ${item.cost}</td>
-                <td><input type="number" id="${item.id}"class="form-control cantidadItemAgregado " onchange="updatePrice(${item.id}, '${item.currency}', ${item.cost})" value="1" min="1"></td>
-                <td id="${item.cost}" class="subtotalProductoAgregado fw-bold">${item.currency} ${item.cost}</td>
+                <td> ${convertirDolares(item.currency, item.cost)}</td>
+                <td><input type="number" id="cantidad_${item.id}"class="form-control cantidadItemAgregado " onchange="actualizarPrecio(${item.id}, '${item.currency}', ${item.cost})" value="1" min="1"></td>
+                <td id="costo_${item.id}" class="subtotalProductoAgregado fw-bold">${convertirDolares(item.currency, item.cost)}</td>
                 <td><button type="button" class="btn btn-outline-danger"><span class="bi bi-trash-fill" onclick="removeItem(${item.id})"></td>
             </tr>`;
+
     }
     tbody.innerHTML += htmlContentToAppend;
 }
 
-// Funcion para actualizar precios en TABLA //
+// Actualizar precios en TABLA //
 
-function updatePrice(id, currency, precio) {
+function actualizarPrecio(id, currency, precio) {
+    let quantity = parseInt(document.getElementById(`cantidad_${id}`).value);
+    let subtotal = document.getElementById(`costo_${id}`);
 
-    let quantity = parseInt(document.getElementById(id).value);
-    let subtotal = document.getElementById(precio);
-    let resultado = quantity * precio;
-    subtotal.innerHTML = currency + ` ` + resultado;
+    if (currency !== dolares) {
+        let resultadoConvertido = quantity * Math.round(precio / 42);
+        subtotal.innerHTML = dolares + ` ` + resultadoConvertido;
+
+    } else {
+        let resultadoNormal = quantity * precio;
+        subtotal.innerHTML = currency + ` ` + resultadoNormal;
+    }
+
     calcularSubtotal()
     mostrarTotal()
 }
 
-// Funcion para calcular precios en SUBTOTAL //
+// Calcular precios en SUBTOTAL //
 
 function calcularSubtotal() {
-
-    cart.forEach((item => {
-        subtotal += item.cost
-        subtotalUnitario.innerHTML = `USD` + ` ` + subtotal;
-    }))
+    let sumatoriaPrecios = cart.reduce((acumulador, item) => {
+        let quantity = parseInt(document.getElementById(`cantidad_${item.id}`).value);
+        if (item.currency === dolares) {
+            return acumulador + (item.cost * quantity);
+        } else {
+            return acumulador + (quantity * Math.round(item.cost / 42));
+        }
+    }, 0)
+    nuevoSubtotal = sumatoriaPrecios;
+    mostrarSubtotal();
+    calcularCostoEnvio();
 }
 
-// Funcion para calcular costo de ENVIO y TOTAL //
+// Agregar escuchas de evento segun tipo de envio seleccionado //
 
 function agregarListenersTipoEnvio() {
-
     let inputs = document.querySelectorAll(".controlTipoEnvio");
-
     inputs.forEach(input => {
         input.addEventListener("click", function () {
             calcularCostoEnvio()
@@ -102,6 +123,7 @@ function agregarListenersTipoEnvio() {
     })
 }
 
+// Calcular costo de envio //
 
 function calcularCostoEnvio() {
     let inputs = document.querySelectorAll(".controlTipoEnvio");
@@ -112,13 +134,13 @@ function calcularCostoEnvio() {
             metodoEnvio = input
         }
     })
-    totalEnvio = metodoEnvio.value * subtotal
+    nuevoCostoEnvio = Math.round(metodoEnvio.value * nuevoSubtotal);
+    mostrarCostoEnvio();
 }
 
-// Funcion compra exitosa //
+// Compra exitosa //
 
 function compraExitosa() {
-
     let alerta = document.getElementById('liveAlertPlaceholder');
 
     htmlContentToAppend = "";
@@ -131,10 +153,9 @@ function compraExitosa() {
     alerta.innerHTML = htmlContentToAppend;
 }
 
-// Funcion para deshabilitar los inputs segun opcion de pago deseada  y desplegar la opcion de pago deseada //
+// Deshabilitar los inputs segun opcion de pago deseada  y desplegar la opcion de pago deseada //
 
 function disableInputs() {
-
     let inputTarjeta = document.querySelectorAll(".metodo1");
     let inputBanco = document.querySelectorAll(".metodo2");
 
@@ -157,8 +178,9 @@ function disableInputs() {
     }
 }
 
-function errorModal() {
+// Modal no valido //
 
+function errorModal() {
     let inputsModal = document.querySelectorAll(".inputModal");
 
     if ((!metodoTarjeta.checked) && (!metodoBanco.checked)) {
@@ -175,19 +197,30 @@ function errorModal() {
     }
 }
 
-function mostrarCostoEnvio() {
-    costoEnvio.innerHTML = `USD` + ` ` + Math.round(totalEnvio);
+// Mostrar Subtotal //
+
+function mostrarSubtotal() {
+    subtotalUnitario.innerHTML = dolares + ` ` + nuevoSubtotal;
 }
 
+// Mostrar Costo de envio //
+
+function mostrarCostoEnvio() {
+    costoEnvio.innerHTML = dolares + ` ` + nuevoCostoEnvio;
+}
+
+// Mostrar Total //
 
 function mostrarTotal() {
-    precioTotal.innerHTML = `USD` + ` ` + (Math.round(totalEnvio) + subtotal);
+    precioTotal.innerHTML = dolares + ` ` + (nuevoCostoEnvio + nuevoSubtotal);
 }
 
 document.addEventListener("DOMContentLoaded", function () {
     if (usuario != null) {
-        agregarItems()
+        mostrarCarritoDeCompras()
+        agregarListenersTipoEnvio()
         calcularSubtotal()
+        mostrarTotal()
     } else {
         alert("debe iniciar sesion")
         window.location = "index.html"
@@ -209,9 +242,4 @@ document.addEventListener("DOMContentLoaded", function () {
     metodoBanco.addEventListener("click", disableInputs)
 
     metodoTarjeta.addEventListener("click", disableInputs)
-
-    agregarListenersTipoEnvio()
-    calcularCostoEnvio()
-    mostrarCostoEnvio()
-    mostrarTotal()
 }) 

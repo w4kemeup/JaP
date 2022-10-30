@@ -518,3 +518,15 @@ td {
   appearance: none;
   margin: 0;
 }
+
+.bi-currency-euro {
+  color: yellow;
+}
+
+.bi-currency-pound {
+  color: orange;
+}
+
+.bi-currency-dollar {
+  color: lightgreen;
+}
