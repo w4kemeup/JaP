@@ -86,8 +86,7 @@ function actualizarPrecio(id, currency, precio) {
         validacionCantidad.setCustomValidity("El producto debe tener una unidad");
     } else {
         validacionCantidad.setCustomValidity("");
-    } console.log(validacionCantidad.checkValidity());
-
+    }
     if (currency !== dolares) {
         let resultadoConvertido = quantity * Math.round(precio / 42);
         subtotal.innerHTML = dolares + ` ` + resultadoConvertido;
