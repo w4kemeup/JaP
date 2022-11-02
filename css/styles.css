@@ -530,3 +530,27 @@ td {
 .bi-currency-dollar {
   color: lightgreen;
 }
+
+#previewImagen {
+  max-width: 80px;
+}
+
+.no-validar-feedback {
+  border-color: #ced4da !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+#modificar {
+  cursor: pointer;
+}
+
+.avatar {
+  height: 80px;
+  border: none;
+}
+
+#previewImagen img {
+  max-width: 80px;
+  max-height: 80px;
+}

@@ -12,6 +12,7 @@ const EXT_TYPE = ".json";
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("signoutBtn").addEventListener("click", function () {
     localStorage.removeItem("correo");
+    localStorage.removeItem("usuario");
     window.location = "index.html"
   })
 });

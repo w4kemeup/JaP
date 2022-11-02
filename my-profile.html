@@ -63,11 +63,95 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+
+    <div class="container overflow-hidden mt-1 col-7">
+
+      <div class="perfil-titulo mt-4 pb-2">
+
+        <div class="row gx-4">
+
+          <div class="col-6">
+            <h1 id="nombreProducto">Perfil</h1>
+            <span class="bi bi-pencil-fill" id="modificar"> Editar</span>
+          </div>
+
+          <div class="col-6">
+            <img id="previewImagen" src="img/img_perfil.png" class="avatar float-end" alt="Foto de perfil">
+          </div>
+        </div>
+
       </div>
+
+      <hr>
+
+      <div id="liveAlertPlaceholder"></div>
+
+      <!-- FORMULARIO -->
+
+      <form id="formularioPerfil" class="needs-validation" novalidate>
+        <div class="row gx-4">
+
+          <div class="col-6">
+            <label for="">Primer nombre*</label>
+            <input id="nombre" type="text" aria-label="Primer nombre" class="form-control mt-2" required disabled/>
+            <div class="invalid-feedback"> Debe ingresar su nombre</div>
+          </div>
+
+          <div class="col-6">
+            <label for="">Segundo nombre</label>
+            <input id="segundoNombre" type="text" aria-label="First name" class="form-control mt-2" disabled/>
+          </div>
+
+        </div>
+
+        <div class="row gx-4">
+
+          <div class="col-6 mt-3">
+            <label for="">Primer apellido*</label>
+            <input id="apellido" type="text" aria-label="Primer apellido" class="form-control mt-2" required disabled/>
+            <div class="invalid-feedback"> Debe ingresar su apellido</div>
+          </div>
+
+          <div class="col-6 mt-3">
+            <label for="">Segundo apellido</label>
+            <input id="segundoApellido" type="text" aria-label="First name" class="form-control mt-2" disabled/>
+          </div>
+
+        </div>
+
+        <div class="row gx-4">
+
+          <div class="col-6 mt-3">
+            <label for="">E-mail</label>
+            <input id="correo" type="text" aria-label="Correo" class="form-control mt-2" disabled/>
+          </div>
+
+          <div class="col-6 mt-3">
+            <label for="">Imagen de perfil</label>
+            <input id="imagen" type="file" aria-label="Imagen de perfil" class="form-control mt-2" disabled/>
+          </div>
+
+        </div>
+
+        <div class="row gx-4">
+
+          <div class="col-6 mt-3 mb-4">
+            <label for="">Teléfono de contacto*</label>
+            <input id="contacto" type="number" aria-label="Contacto" class="form-control mt-2" required disabled/>
+            <div class="invalid-feedback"> Debe ingresar su teléfono de contacto</div>
+          </div>
+
+        </div>
+
+        <hr>
+
+        <div class="row">
+          <button type="submit" class="btn btn-primary col-3 mt-4">Guardar cambios</button>
+        </div>
+
+      </form>
     </div>
+
   </main>
   <footer class="text-muted">
     <div class="container">
