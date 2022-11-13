@@ -6,6 +6,8 @@ const PRODUCT_INFO_COMMENTS_URL = "https://japceibal.github.io/emercado-api/prod
 const CART_INFO_URL = "https://japceibal.github.io/emercado-api/user_cart/";
 const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
 const EXT_TYPE = ".json";
+let alertaPerfil = document.getElementById("alertaSesion");
+let redirect = document.getElementById("linkPerfil");
 
 /* Cerrar sesion */
 
@@ -15,6 +17,11 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.removeItem("usuario");
     window.location = "index.html"
   })
+  document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    .forEach(tooltip => {
+      new bootstrap.Tooltip(tooltip)
+    })
+  alertarInicioSesion()
 });
 
 let showSpinner = function () {
@@ -53,3 +60,12 @@ let getJSONData = function (url) {
 /* obtengo la key almacenada con el valor del usuario, y lo muestro en un parrafo vacio con la id correspondiente para verlo en todas las paginas */
 
 document.getElementById("dropdownMenuButton2").innerHTML = localStorage.getItem("correo");
+
+function alertarInicioSesion() {
+  if (!localStorage.getItem("correo")) {
+    alertaPerfil.style.visibility = "visible";
+    redirect.removeAttribute("href");
+  } else {
+    alertaPerfil.style.visibility = "hidden";
+  }
+}

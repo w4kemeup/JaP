@@ -24,6 +24,7 @@ const dolares = 'USD';
 let nuevoSubtotal = 0;
 let nuevoCostoEnvio = 0;
 
+
 function setCatID(id) {
     localStorage.setItem("productoID", id);
     window.location = "product-info.html"

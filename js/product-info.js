@@ -355,13 +355,13 @@ function mostrarComentarios() {
 
     htmlContentToAppend = `      
         
-        <div class="card shadow p-3 mb-5 bg-body rounded">
+        <div class="card shadow bg-body rounded">
           <div class="card-header fw-bold bg-dark text-white">${item.user}</div>
             <div class="card-body">
               <blockquote class="blockquote mb-0">
                 <p>${item.description}</p>
                 <p>${estrella(item.score)}</p>
-                <footer class="blockquote-footer">${item.dateTime}</footer>
+                <p>${item.dateTime}</p>
               </blockquote>                    
             </div>
         </div>
@@ -380,7 +380,7 @@ function productosRelacionados() {
 
     htmlContentToAppend = `
         <div onclick="setCatID(${relacionado.id})" class="cursor-active"  style=width:200px>
-        <img src="${relacionado.image}"  style=width:200px>
+        <img src="${relacionado.image}" class="img-fluid" style=width:200px>
         <p class="fs-5">${relacionado.name}</p>
         </div>
         
@@ -410,7 +410,7 @@ function agregarComentario() {
               `;
 
   document.getElementById("comentarioNuevo").value = "";
-  document.getElementById("puntaje").value = "3";
+  document.getElementById("puntaje").value = "1";
 }
 
 document.addEventListener("DOMContentLoaded", function (e) {

@@ -52,7 +52,11 @@
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
               <li><a class="dropdown-item active" href="cart.html"><span class="bi bi-cart4"></span> Mi carrito </a>
               </li>
-              <li><a class="dropdown-item" href="my-profile.html"><span class="bi bi-person-fill"></span> Mi perfil</a>
+              <li><a id="linkPerfil" class="dropdown-item" href="my-profile.html"><span
+                    class="bi bi-person-fill"></span> Mi perfil
+                  <span class="bi bi-exclamation-circle text-danger" id="alertaSesion" data-bs-toggle="tooltip"
+                    data-bs-placement="right" data-bs-custom-class="custom-tooltip"
+                    data-bs-title="Debes iniciar sesión para acceder a tu perfil."></span></a>
               </li>
               <li><a class="dropdown-item" id="signoutBtn" href="#"><span class="bi bi-box-arrow-right"></span> Cerrar
                   sesión</a></li>
@@ -72,7 +76,6 @@
 
           <div class="col-6">
             <h1 id="nombreProducto">Perfil</h1>
-            <span class="bi bi-pencil-fill" id="modificar"> Editar</span>
           </div>
 
           <div class="col-6">
@@ -93,13 +96,13 @@
 
           <div class="col-6">
             <label for="">Primer nombre*</label>
-            <input id="nombre" type="text" aria-label="Primer nombre" class="form-control mt-2" required disabled/>
+            <input id="nombre" type="text" aria-label="Primer nombre" class="form-control mt-2" required />
             <div class="invalid-feedback"> Debe ingresar su nombre</div>
           </div>
 
           <div class="col-6">
             <label for="">Segundo nombre</label>
-            <input id="segundoNombre" type="text" aria-label="First name" class="form-control mt-2" disabled/>
+            <input id="segundoNombre" type="text" aria-label="First name" class="form-control mt-2" />
           </div>
 
         </div>
@@ -108,13 +111,13 @@
 
           <div class="col-6 mt-3">
             <label for="">Primer apellido*</label>
-            <input id="apellido" type="text" aria-label="Primer apellido" class="form-control mt-2" required disabled/>
+            <input id="apellido" type="text" aria-label="Primer apellido" class="form-control mt-2" required />
             <div class="invalid-feedback"> Debe ingresar su apellido</div>
           </div>
 
           <div class="col-6 mt-3">
             <label for="">Segundo apellido</label>
-            <input id="segundoApellido" type="text" aria-label="First name" class="form-control mt-2" disabled/>
+            <input id="segundoApellido" type="text" aria-label="First name" class="form-control mt-2" />
           </div>
 
         </div>
@@ -122,13 +125,13 @@
         <div class="row gx-4">
 
           <div class="col-6 mt-3">
-            <label for="">E-mail</label>
-            <input id="correo" type="text" aria-label="Correo" class="form-control mt-2" disabled/>
+            <label for="">E-mail*</label>
+            <input id="correo" type="text" aria-label="Correo" class="form-control mt-2" required />
           </div>
 
           <div class="col-6 mt-3">
             <label for="">Imagen de perfil</label>
-            <input id="imagen" type="file" aria-label="Imagen de perfil" class="form-control mt-2" disabled/>
+            <input id="imagen" type="file" aria-label="Imagen de perfil" class="form-control mt-2" />
           </div>
 
         </div>
@@ -136,8 +139,8 @@
         <div class="row gx-4">
 
           <div class="col-6 mt-3 mb-4">
-            <label for="">Teléfono de contacto*</label>
-            <input id="contacto" type="number" aria-label="Contacto" class="form-control mt-2" required disabled/>
+            <label for="">Teléfono de contacto</label>
+            <input id="contacto" type="number" aria-label="Contacto" class="form-control mt-2" />
             <div class="invalid-feedback"> Debe ingresar su teléfono de contacto</div>
           </div>
 
@@ -146,14 +149,14 @@
         <hr>
 
         <div class="row">
-          <button type="submit" class="btn btn-primary col-3 mt-4">Guardar cambios</button>
+          <button type="submit" class="btn btn-primary col-3 mt-4" id="btnGuardar">Guardar cambios</button>
         </div>
 
       </form>
     </div>
 
   </main>
-  <footer class="text-muted">
+  <footer class="text-white bg-dark">
     <div class="container">
       <p class="float-end">
         <a href="#">Volver arriba</a>

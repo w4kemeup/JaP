@@ -1,4 +1,4 @@
-let usuario = localStorage.getItem("correo");
+let usuarioLogIn = localStorage.getItem("correo");
 let form = document.getElementById("formularioPerfil");
 let alerta = document.getElementById("liveAlertPlaceholder");
 let campoNombre = document.getElementById("nombre");
@@ -11,6 +11,11 @@ let campoTelefono = document.getElementById("contacto");
 let modificarPerfil = document.getElementById("modificar");
 let avatar = document.getElementById("previewImagen");
 let camposPerfil = [];
+let botonGuardar = document.getElementById("btnGuardar");
+let baseNueva = JSON.parse(localStorage.getItem("baseUsuarios"));
+let arrayUsuarios = [];
+let usuariosModificados = []
+let usuarioAvatar = document.getElementById("previewImagen");
 
 // Validar solamente los inputs que son requeridos //
 
@@ -23,76 +28,62 @@ function validarSoloCamposRequeridos() {
     })
 }
 
-// Alertar al entrar sin iniciar sesion //
-
-function alertarInicioSesion() {
-
-    let htmlContentToAppend = "";
-
-    htmlContentToAppend = `
-         
-        <div class="alert alert-danger text-center" role="alert">
-        Parece que no tienes iniciada la sesión. Hazlo <a href="index.html" class="alert-link">aquí</a>.
-        </div>
-        `;
-
-    alerta.innerHTML = htmlContentToAppend;
-}
-
 // Almacenar datos de perfil //
 
 function guardarCambiosPerfil() {
     let perfilUsuario = {
-
         nombre: campoNombre.value,
         segundoNombre: campoSegundoNombre.value,
         apellido: campoApellido.value,
         segundoApellido: campoSegundoApellido.value,
         correo: campoMail.value,
         contacto: campoTelefono.value
-
     };
-    localStorage.setItem("usuario", JSON.stringify(perfilUsuario));
+    arrayUsuarios.push(perfilUsuario);
+
+    if (!localStorage.getItem("baseUsuarios")) {
+        localStorage.setItem("baseUsuarios", JSON.stringify(arrayUsuarios));
+    } else {
+        baseNueva.push(perfilUsuario);
+        localStorage.setItem("baseUsuarios", JSON.stringify(baseNueva));
+    }
+}
+
+function cambiarDatos() {
+    let encontrarUser = baseNueva.find(x => x.correo == usuarioLogIn);
+    const index = baseNueva.indexOf(encontrarUser);
+    if (index > -1) {
+        baseNueva.splice(index, 1);
+    }
+    localStorage.setItem("baseUsuarios", JSON.stringify(baseNueva));
+    guardarCambiosPerfil()
 }
 
 // Mostrar datos al iniciar sesion //
 
 function mostrarDatos() {
-    let dataAlmacenada = JSON.parse(localStorage.getItem("usuario"));
 
-    campoNombre.value = dataAlmacenada.nombre
-    campoSegundoNombre.value = dataAlmacenada.segundoNombre
-    campoApellido.value = dataAlmacenada.apellido;
-    campoSegundoApellido.value = dataAlmacenada.segundoApellido;
-    campoMail.value = dataAlmacenada.correo;
-    campoTelefono.value = dataAlmacenada.contacto;
-
-    let miNuevoAvatar = localStorage.getItem("nuevoAvatar");
-
-    const newPicture = new Image();
-    newPicture.src = miNuevoAvatar;
-    avatar.setAttribute("src", miNuevoAvatar);
-
-}
-
-// Modificar datos //
-
-function editarPerfil() {
-    let inputsEditar = document.querySelectorAll(".form-control");
-    inputsEditar.forEach(input => {
-        input.disabled = !true;
-    })
+    let encontrarUsuario = baseNueva.find(x => x.correo === usuarioLogIn);
+    if (encontrarUsuario) {
+        campoNombre.value = encontrarUsuario.nombre
+        campoSegundoNombre.value = encontrarUsuario.segundoNombre
+        campoApellido.value = encontrarUsuario.apellido;
+        campoSegundoApellido.value = encontrarUsuario.segundoApellido;
+        campoMail.value = encontrarUsuario.correo;
+        campoTelefono.value = encontrarUsuario.contacto;
+        if (!localStorage.getItem(`fotoUsuario_${usuarioLogIn}`)) {
+            usuarioAvatar.setAttribute("src", "img/img_perfil.png")
+        } else {
+            usuarioAvatar.setAttribute("src", localStorage.getItem(`fotoUsuario_${usuarioLogIn}`));
+        }
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    if (usuario != null) {
-        campoMail.value = usuario;
-        if (JSON.parse(localStorage.getItem("usuario")) != null) {
-            mostrarDatos()
-        }
-    } else {
-        alertarInicioSesion()
-        /* window.location = "index.html" */
+    if ((baseNueva == undefined) || (baseNueva.find(x => x.correo === usuarioLogIn) == undefined)) {
+        campoMail.value = usuarioLogIn;
+    } else if (baseNueva.find(x => x.correo === usuarioLogIn)) {
+        mostrarDatos()
     }
     form.addEventListener('submit', event => {
         if (!form.checkValidity()) {
@@ -101,12 +92,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         form.classList.add('was-validated')
         validarSoloCamposRequeridos()
-        if (form.checkValidity()) {
+        if (form.checkValidity() && (baseNueva == undefined)) {
             guardarCambiosPerfil()
-            mostrarDatos()
+        } else {
+            cambiarDatos()
         }
+        mostrarDatos()
     });
-    modificarPerfil.addEventListener("click", editarPerfil)
 
     // Agregar imagen de perfil //
 
@@ -121,8 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const fotoAvatar = new Image();
             fotoAvatar.src = url;
             avatar.setAttribute("src", url);
-            localStorage.setItem("nuevoAvatar", url);
+            localStorage.setItem(`fotoUsuario_${usuarioLogIn}`, url);
         })
     })
-
 })

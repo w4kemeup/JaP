@@ -15,27 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
     })
 })
 
-// funcion para modo oscuro //
-
-
-let boton = document.getElementById("botonOscuro");
-let fondo = document.body;
-
-boton.addEventListener("click", function () {
-    let tema = fondo.classList.toggle("oscuro")
-    localStorage.setItem("modo-oscuro", tema)
-})
-
-// mantener modo aunque se refresque la pagina // 
-
-let dark = localStorage.getItem("modo-oscuro");
-
-if (dark == "true") {
-    fondo.classList.add("oscuro")
-} else {
-    fondo.classList.remove("oscuro")
-}
-
 // sign in con google //
 
 /* function handleCredentialResponse(response) {
@@ -53,5 +32,5 @@ window.onload = function () {
         }
     );
     google.accounts.id.prompt();
-}
- */
+} */
+

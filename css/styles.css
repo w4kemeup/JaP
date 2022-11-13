@@ -73,7 +73,7 @@ footer {
 }
 
 footer p {
-  margin-bottom: .25rem;
+  margin-bottom: 1rem;
 }
 
 .site-header a {
@@ -206,16 +206,16 @@ a.custom-card:hover {
   font-weight: 600;
 }
 
-#usuario,
+/* #usuario,
 #password {
   width: 300px;
 }
 
 .logo {
   height: 140px;
-}
+} */
 
-#lgnBtn {
+/* #lgnBtn {
   font-weight: 600;
   padding-right: 20px;
   padding-left: 20px;
@@ -235,9 +235,9 @@ a.custom-card:hover {
 
 #lgnBtn:focus {
   box-shadow: 0 0 0 2px #0087F7;
-}
+} */
 
-#botonOscuro {
+/* #botonOscuro {
   position: absolute;
   top: 20px;
   right: 16px;
@@ -251,7 +251,7 @@ a.custom-card:hover {
 }
 
 #botonOscuro:hover {
-  background-color: #212529;
+  background-color: #212529; 
   color: white;
   cursor: pointer;
 }
@@ -281,7 +281,7 @@ a.custom-card:hover {
 
 .oscuro input {
   border: 1px solid white;
-}
+} */
 
 #buttonDiv {
   display: grid;
@@ -289,7 +289,7 @@ a.custom-card:hover {
   margin-top: 10px;
 }
 
-#buscador {
+/* #buscador {
   position: absolute;
   margin-top: 5px;
   right: 10px;
@@ -332,7 +332,7 @@ a.custom-card:hover {
   right: 20px;
   margin-top: 8px;
   color: white;
-}
+} */
 
 .tablaProducto {
   display: grid;
@@ -353,7 +353,7 @@ a.custom-card:hover {
   padding: 5px;
 }
 
-#puntajeBtn {
+/* #puntajeBtn {
   font-family: Raleway;
   padding-right: 15px;
   padding-left: 15px;
@@ -367,7 +367,7 @@ a.custom-card:hover {
 
 #puntajeBtn:hover {
   background-color: rgb(11, 94, 215);
-}
+} */
 
 .bi-star-fill {
   color: orange;
