@@ -80,6 +80,10 @@ function mostrarDatos() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+    if (usuarioLogIn == null) {
+        alert("debes iniciar sesion")
+        window.location.replace("https://w4kemeup.github.io/JaP/");
+    }
     if ((baseNueva == undefined) || (baseNueva.find(x => x.correo === usuarioLogIn) == undefined)) {
         campoMail.value = usuarioLogIn;
     } else if (baseNueva.find(x => x.correo === usuarioLogIn)) {
