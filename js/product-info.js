@@ -8,7 +8,6 @@ let contenedorTarjetas = document.getElementById("contenedorTarjetas");
 let infoProducto = document.getElementById("contenidoProducto");
 let cuadroComentarios = document.getElementById("contenidoComentarios");
 let botonEnviar = document.getElementById("puntajeBtn");
-let usuario = localStorage.getItem("correo");
 let contenidoRelacionado = document.getElementById("contenedorProductoRelacionado");
 let botonComprar = document.getElementById("btnComprar");
 const fecha = new Date();
@@ -397,8 +396,8 @@ function agregarComentario() {
 
   document.getElementById("contenedorTarjetas").innerHTML += `      
           
-        <div class="card shadow p-3 mb-5 bg-body rounded">
-          <div class="card-header fw-bold bg-dark text-white">${usuario}</div>
+        <div class="card shadow bg-body rounded">
+          <div class="card-header fw-bold bg-dark text-white">${usuarioLogIn}</div>
           <div class="card-body">
             <blockquote class="blockquote mb-0">
              <p>${comentarioUsuario}</p>

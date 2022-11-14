@@ -3,7 +3,6 @@ let cart = JSON.parse(localStorage.getItem("cart"));
 let tbody = document.getElementById("testRow");
 let productoFetch = [];
 let carritoDefecto = (CART_INFO_URL + 25801 + EXT_TYPE);
-let usuario = localStorage.getItem("correo");
 let btnComprar = document.getElementById("finalizarCompra");
 let form = document.getElementById("formularioComprar");
 let subtotalUnitario = document.getElementById("subtotal");
@@ -223,11 +222,13 @@ function mostrarTotal() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    if (usuario != null) {
-        mostrarCarritoDeCompras()
-        agregarListenersTipoEnvio()
-        calcularSubtotal()
-        mostrarTotal()
+    if (usuarioLogIn != null) {
+        if (cart != null) {
+            mostrarCarritoDeCompras()
+            agregarListenersTipoEnvio()
+            calcularSubtotal()
+            mostrarTotal()
+        }
     } else {
         alert("debe iniciar sesion")
         window.location = "index.html"

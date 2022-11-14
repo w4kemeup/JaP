@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // sign in con google //
 
-/* function handleCredentialResponse(response) {
+function handleCredentialResponse(response) {
     location.replace("portada.html")
 }
 window.onload = function () {
@@ -28,9 +28,8 @@ window.onload = function () {
     google.accounts.id.renderButton(
         document.getElementById("buttonDiv"),
         {
-            theme: "filled_black", size: "large", type: "standard", shape: "pill", text: "$ {button.text}", logo_alignment: "left", width: "300"
+            theme: "filled_black", size: "large", type: "icon", text: "$ {button.text}", logo_alignment: "left", width: "00"
         }
     );
     google.accounts.id.prompt();
-} */
-
+}

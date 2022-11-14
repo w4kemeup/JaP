@@ -8,13 +8,16 @@ const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
 const EXT_TYPE = ".json";
 let alertaPerfil = document.getElementById("alertaSesion");
 let redirect = document.getElementById("linkPerfil");
+let usuarioLogIn = localStorage.getItem("correo");
+let cerrarSesion = document.getElementById("signoutBtn");
+let carroCantidad = JSON.parse(localStorage.getItem("cart"));
+
 
 /* Cerrar sesion */
 
 document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("signoutBtn").addEventListener("click", function () {
+  cerrarSesion.addEventListener("click", function () {
     localStorage.removeItem("correo");
-    localStorage.removeItem("usuario");
     window.location = "index.html"
   })
   document.querySelectorAll('[data-bs-toggle="tooltip"]')
@@ -57,12 +60,12 @@ let getJSONData = function (url) {
     });
 }
 
-/* obtengo la key almacenada con el valor del usuario, y lo muestro en un parrafo vacio con la id correspondiente para verlo en todas las paginas */
+// Mostrar usuario en el dropdown del navbar //
 
-document.getElementById("dropdownMenuButton2").innerHTML = localStorage.getItem("correo");
+document.getElementById("dropdownMenuButton2").innerHTML = usuarioLogIn;
 
 function alertarInicioSesion() {
-  if (!localStorage.getItem("correo")) {
+  if (!usuarioLogIn) {
     alertaPerfil.style.visibility = "visible";
     redirect.removeAttribute("href");
   } else {

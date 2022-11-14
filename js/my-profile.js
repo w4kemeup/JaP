@@ -1,4 +1,3 @@
-let usuarioLogIn = localStorage.getItem("correo");
 let form = document.getElementById("formularioPerfil");
 let alerta = document.getElementById("liveAlertPlaceholder");
 let campoNombre = document.getElementById("nombre");
