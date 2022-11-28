@@ -246,14 +246,12 @@ document.addEventListener("DOMContentLoaded", function () {
         if (form.checkValidity()) {
             event.preventDefault()
             compraExitosa()
-            obtenerMetodoPago()
             localStorage.removeItem("cart");
             setTimeout(() => {
                 location.reload()
             }, 3000);
         }
     });
-
     metodoBanco.addEventListener("click", disableInputs)
     metodoTarjeta.addEventListener("click", disableInputs)
 }) 
