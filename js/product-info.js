@@ -11,8 +11,8 @@ let botonEnviar = document.getElementById("puntajeBtn");
 let contenidoRelacionado = document.getElementById("contenedorProductoRelacionado");
 let botonComprar = document.getElementById("btnComprar");
 const fecha = new Date();
-let urlProducto = (PRODUCT_INFO_URL + getID + EXT_TYPE)
-let comentariosProducto = (PRODUCT_INFO_COMMENTS_URL + getID + EXT_TYPE)
+let urlProducto = (PRODUCT_INFO_URL + getID + EXT_TYPE);
+let comentariosProducto = (PRODUCT_INFO_COMMENTS_URL + getID + EXT_TYPE);
 
 /* Redireccionar a productos relacionados */
 
@@ -102,7 +102,7 @@ function mostrarProductos() {
   let htmlContentToAppend = "";
 
   htmlContentToAppend = `
-    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -120,7 +120,6 @@ function mostrarProductos() {
             <div class="collapse" id="collapseExample">
                 <div class="text-start">
                     
-
                 <ol class="list-group">
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                   <div class="ms-2 me-auto">
@@ -154,11 +153,8 @@ function mostrarProductos() {
                 </li>
                 
               </ol>
-
-
                 </div>
             </div>
-
         </div>
       </div>
       <div class="carousel-item" data-bs-interval="2000">
@@ -170,7 +166,6 @@ function mostrarProductos() {
             <div class="collapse" id="collapseExample">
                 <div class="text-start">
                     
-
                 <ol class="list-group">
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                   <div class="ms-2 me-auto">
@@ -204,8 +199,6 @@ function mostrarProductos() {
                 </li>
                 
               </ol>
-
-
                 </div>
             </div>
         </div>
@@ -219,7 +212,6 @@ function mostrarProductos() {
             <div class="collapse" id="collapseExample">
                 <div class="text-start">
                     
-
                 <ol class="list-group">
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                   <div class="ms-2 me-auto">
@@ -253,8 +245,6 @@ function mostrarProductos() {
                 </li>
                 
               </ol>
-
-
                 </div>
             </div>
         </div>
@@ -268,7 +258,6 @@ function mostrarProductos() {
             <div class="collapse" id="collapseExample">
                 <div class="text-start">
                     
-
                 <ol class="list-group">
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                   <div class="ms-2 me-auto">
@@ -302,8 +291,6 @@ function mostrarProductos() {
                 </li>
                 
               </ol>
-
-
                 </div>
             </div>
         </div>

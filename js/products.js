@@ -9,7 +9,7 @@ let minCount = undefined;
 let maxCount = undefined;
 let search = undefined;
 let getID = localStorage.getItem("catID");
-let urlProductos = PRODUCTS_URL + getID + EXT_TYPE
+let urlProductos = PRODUCTS_URL + getID + EXT_TYPE;
 
 
 function setCatID(id) {
@@ -19,7 +19,6 @@ function setCatID(id) {
 }
 
 /* criterios para ordenar los productos  */
-
 
 function sortProductos(criteria, array) {
 
@@ -78,13 +77,7 @@ function mostrarProductos() {
             </div>
             </div>
              `;
-            } /* else {
-                htmlContentToAppend += `
-                <div class="alert alert-danger mt-4" role="alert">
-                    No hay resultados
-                </div>
-                    `;
-            } */
+            }
         }
     }
     document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
@@ -116,9 +109,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
             mostrarProductos()
             localStorage.setItem("catalogo", JSON.stringify(listadoProductos));
         }
-        /* if (!localStorage.getItem("cart")); {
-            localStorage.setItem("cart", "[]");
-        } */
     });
 
     document.getElementById("sortPriceUp").addEventListener("click", function () {

@@ -22,7 +22,11 @@ let numeroCuenta = document.getElementById("numeroCuenta")
 const dolares = 'USD';
 let nuevoSubtotal = 0;
 let nuevoCostoEnvio = 0;
-
+let inputCalle = document.getElementById("nombreCalle");
+let inputNumero = document.getElementById("numeroPuerta");
+let inputEsquina = document.getElementById("nombreEsquina");
+let metodoEnvio;
+let formaSeleccionada;
 
 function setCatID(id) {
     localStorage.setItem("productoID", id);
@@ -64,13 +68,12 @@ function mostrarCarritoDeCompras() {
 
             <tr>
                 <td class="col-1"><img class="ms-3" src="${item.images[0]}"style=width:50px></img></td>
-                <td onclick="setCatID(${item.id})" class="cursor-active">${item.name}</td>
+                <td onclick="setCatID(${item.id})" class="cursor-active nombreProducto">${item.name}</td>
                 <td> ${convertirDolares(item.currency, item.cost)}</td>
-                <td><input form="formularioComprar" type="number" id="cantidad_${item.id}" class="form-control cantidadItemAgregado " onchange="actualizarPrecio(${item.id}, '${item.currency}', ${item.cost})" value="1" min="1" required></td>
+                <td><input form="formularioComprar" type="number" id="cantidad_${item.id}" class="form-control cantidadItemAgregado" onchange="actualizarPrecio(${item.id}, '${item.currency}', ${item.cost})" value="1" min="1" required></td>
                 <td id="costo_${item.id}" class="subtotalProductoAgregado fw-bold">${convertirDolares(item.currency, item.cost)}</td>
                 <td><button type="button" class="btn btn-outline-danger"><span class="bi bi-trash-fill" onclick="removeItem(${item.id})"></td>
             </tr>`;
-
     }
     tbody.innerHTML += htmlContentToAppend;
 }
@@ -133,7 +136,6 @@ function agregarListenersTipoEnvio() {
 
 function calcularCostoEnvio() {
     let inputs = document.querySelectorAll(".controlTipoEnvio");
-    let metodoEnvio;
 
     inputs.forEach(input => {
         if (input.checked) {
@@ -244,10 +246,14 @@ document.addEventListener("DOMContentLoaded", function () {
         if (form.checkValidity()) {
             event.preventDefault()
             compraExitosa()
+            obtenerMetodoPago()
+            localStorage.removeItem("cart");
+            setTimeout(() => {
+                location.reload()
+            }, 3000);
         }
     });
 
     metodoBanco.addEventListener("click", disableInputs)
-
     metodoTarjeta.addEventListener("click", disableInputs)
 }) 

@@ -10,8 +10,6 @@ let alertaPerfil = document.getElementById("alertaSesion");
 let redirect = document.getElementById("linkPerfil");
 let usuarioLogIn = localStorage.getItem("correo");
 let cerrarSesion = document.getElementById("signoutBtn");
-let carroCantidad = JSON.parse(localStorage.getItem("cart"));
-
 
 /* Cerrar sesion */
 
@@ -68,6 +66,7 @@ function alertarInicioSesion() {
   if (!usuarioLogIn) {
     alertaPerfil.style.visibility = "visible";
     redirect.removeAttribute("href");
+    cerrarSesion.innerHTML = `<span class="bi bi-box-arrow-left"> Iniciar sesión</span>`
   } else {
     alertaPerfil.style.visibility = "hidden";
   }
